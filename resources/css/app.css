@@ -57,6 +57,62 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Custom Color Palette */
+    --color-coral_pink-100: #4e0601;
+    --color-coral_pink-200: #9c0c02;
+    --color-coral_pink-300: #e91202;
+    --color-coral_pink-400: #fd4a3d;
+    --color-coral_pink-500: #fe938c;
+    --color-coral_pink-600: #fea8a2;
+    --color-coral_pink-700: #febeb9;
+    --color-coral_pink-800: #ffd4d1;
+    --color-coral_pink-900: #ffe9e8;
+    --color-coral_pink: #fe938c;
+
+    --color-desert_sand-100: #3e2110;
+    --color-desert_sand-200: #7c431f;
+    --color-desert_sand-300: #ba642f;
+    --color-desert_sand-400: #d78d5f;
+    --color-desert_sand-500: #e6b89c;
+    --color-desert_sand-600: #ebc7b1;
+    --color-desert_sand-700: #f0d5c4;
+    --color-desert_sand-800: #f5e3d8;
+    --color-desert_sand-900: #faf1eb;
+    --color-desert_sand: #e6b89c;
+
+    --color-wheat-100: #412f10;
+    --color-wheat-200: #835d21;
+    --color-wheat-300: #c48c31;
+    --color-wheat-400: #dab06c;
+    --color-wheat-500: #ead2ac;
+    --color-wheat-600: #efdcbe;
+    --color-wheat-700: #f3e5ce;
+    --color-wheat-800: #f7edde;
+    --color-wheat-900: #fbf6ef;
+    --color-wheat: #ead2ac;
+
+    --color-cadet_gray-100: #1c2427;
+    --color-cadet_gray-200: #39484e;
+    --color-cadet_gray-300: #556b75;
+    --color-cadet_gray-400: #738e9a;
+    --color-cadet_gray-500: #9cafb7;
+    --color-cadet_gray-600: #afbec5;
+    --color-cadet_gray-700: #c3ced3;
+    --color-cadet_gray-800: #d7dfe2;
+    --color-cadet_gray-900: #ebeff0;
+    --color-cadet_gray: #9cafb7;
+
+    --color-cerulean-100: #0d1a21;
+    --color-cerulean-200: #1a3442;
+    --color-cerulean-300: #274e62;
+    --color-cerulean-400: #346883;
+    --color-cerulean-500: #4281a4;
+    --color-cerulean-600: #5f9dbf;
+    --color-cerulean-700: #87b6cf;
+    --color-cerulean-800: #afcedf;
+    --color-cerulean-900: #d7e7ef;
+    --color-cerulean: #4281a4;
 }
 
 :root {
@@ -142,14 +198,14 @@
 
 @layer components {
     .form-input {
-        @apply block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm;
+        @apply block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-cerulean-500 focus:ring-cerulean-500 sm:text-sm;
     }
     
     .form-select {
-        @apply block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm;
+        @apply block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-cerulean-500 focus:ring-cerulean-500 sm:text-sm;
     }
     
     .form-textarea {
-        @apply block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm;
+        @apply block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-cerulean-500 focus:ring-cerulean-500 sm:text-sm;
     }
 }

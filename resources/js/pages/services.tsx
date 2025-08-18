@@ -235,7 +235,7 @@ export default function Services({ services }: ServicesProps) {
                                                         <p className="text-sm text-gray-600 dark:text-gray-300">{item.description}</p>
                                                     </div>
                                                     <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                                                        +${item.price}
+                                                        +${Number(item.price).toFixed(2)}
                                                     </span>
                                                 </div>
                                                 <div className="flex justify-between items-center">
@@ -262,7 +262,7 @@ export default function Services({ services }: ServicesProps) {
                                                         <span className="text-sm text-gray-600 dark:text-gray-300">{item.name}</span>
                                                         <div className="flex items-center">
                                                             <span className="text-sm font-semibold text-gray-900 dark:text-white mr-2">
-                                                                +${item.price}
+                                                                +${Number(item.price).toFixed(2)}
                                                             </span>
                                                             <button
                                                                 onClick={() => removeAdditionalItem(item.id)}
@@ -282,7 +282,7 @@ export default function Services({ services }: ServicesProps) {
                                 <div className="border-t pt-4">
                                     <div className="flex justify-between items-center text-lg font-semibold text-gray-900 dark:text-white">
                                         <span>Total Estimated Cost:</span>
-                                        <span>${calculateTotalPrice()}/hour</span>
+                                        <span>${Number(calculateTotalPrice()).toFixed(2)}/hour</span>
                                     </div>
                                 </div>
 

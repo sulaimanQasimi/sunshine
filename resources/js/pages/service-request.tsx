@@ -36,7 +36,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
 
     const { data, setData, post, processing, errors } = useForm({
         service_id: service.id,
-        selected_additional_items: [],
+        selected_additional_items: [] as number[],
         description: '',
         client_name: auth.user.name,
         client_email: auth.user.email,
@@ -137,12 +137,12 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                     <div className="flex justify-between items-center">
                                         <span className="text-gray-600 dark:text-gray-300">{service.name}</span>
                                         <span className="font-semibold text-gray-900 dark:text-white">
-                                            ${service.special_price || service.base_price}/hour
+                                            ${Number(service.special_price || service.base_price).toFixed(2)}/hour
                                         </span>
                                     </div>
                                     {service.is_special_offer && service.special_price && (
                                         <div className="mt-2 text-sm text-red-600 dark:text-red-400">
-                                            Special offer! Original price: ${service.base_price}/hour
+                                            Special offer! Original price: ${Number(service.base_price).toFixed(2)}/hour
                                         </div>
                                     )}
                                 </div>
@@ -160,7 +160,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                                             <p className="text-sm text-gray-600 dark:text-gray-300">{item.description}</p>
                                                         </div>
                                                         <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                                                            +${item.price}
+                                                            +${Number(item.price).toFixed(2)}
                                                         </span>
                                                     </div>
                                                     <div className="flex justify-between items-center">
@@ -206,7 +206,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                 <div className="mt-6 p-4 bg-cerulean-50 dark:bg-cerulean-900/20 rounded-lg">
                                     <div className="flex justify-between items-center text-lg font-semibold text-gray-900 dark:text-white">
                                         <span>Total Estimated Cost:</span>
-                                        <span>${calculateTotalPrice()}/hour</span>
+                                        <span>${Number(calculateTotalPrice()).toFixed(2)}/hour</span>
                                     </div>
                                 </div>
 

@@ -209,7 +209,7 @@ export default function AdminServiceRequests({ auth, serviceRequests }: AdminSer
                                             )}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                                            ${request.total_price.toFixed(2)}
+                                            ${Number(request.total_price).toFixed(2)}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <div className="flex items-center space-x-2">

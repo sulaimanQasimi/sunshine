@@ -163,10 +163,10 @@ export default function MyServiceRequests({ auth, serviceRequests }: MyServiceRe
                                                     <span className="font-medium">Service:</span> {request.service.name}
                                                 </p>
                                                 <p className="text-sm text-gray-900 dark:text-white">
-                                                    <span className="font-medium">Base Price:</span> ${request.base_price}/hour
+                                                    <span className="font-medium">Base Price:</span> ${Number(request.base_price).toFixed(2)}/hour
                                                 </p>
                                                 <p className="text-sm text-gray-900 dark:text-white">
-                                                    <span className="font-medium">Total Price:</span> ${request.total_price}/hour
+                                                    <span className="font-medium">Total Price:</span> ${Number(request.total_price).toFixed(2)}/hour
                                                 </p>
                                                 {request.selected_additional_items && request.selected_additional_items.length > 0 && (
                                                     <p className="text-sm text-gray-900 dark:text-white">
