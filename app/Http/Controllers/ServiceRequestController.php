@@ -98,7 +98,7 @@ class ServiceRequestController extends Controller
             abort(403);
         }
 
-        $serviceRequest->load(['service', 'service.additionalItems']);
+        $serviceRequest->load(['service', 'service.additionalItems', 'user']);
 
         return Inertia::render('service-request-detail', [
             'serviceRequest' => $serviceRequest,
@@ -118,6 +118,38 @@ class ServiceRequestController extends Controller
         $serviceRequest->confirm();
 
         return redirect()->back()->with('success', 'Service request confirmed successfully!');
+    }
+
+    /**
+     * Update the specified service request.
+     */
+    public function update(Request $request, ServiceRequest $serviceRequest)
+    {
+        // Ensure user can only update their own requests (unless admin)
+        if (Auth::user()->role !== 'admin' && $serviceRequest->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'description' => 'nullable|string|max:1000',
+            'client_name' => 'required|string|max:255',
+            'client_email' => 'required|email|max:255',
+            'client_phone' => 'required|string|max:20',
+            'client_address' => 'required|string|max:500',
+            'house_number' => 'nullable|string|max:50',
+            'city' => 'required|string|max:100',
+            'state' => 'required|string|max:100',
+            'postal_code' => 'required|string|max:20',
+            'country' => 'required|string|max:100',
+            'preferred_date' => 'required|date|after:today',
+            'preferred_time' => 'required|date_format:H:i',
+            'special_requirements' => 'nullable|string|max:1000',
+            'additional_notes' => 'nullable|string|max:1000',
+        ]);
+
+        $serviceRequest->update($validated);
+
+        return redirect()->back()->with('success', 'Service request updated successfully!');
     }
 
     /**

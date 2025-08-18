@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout';
 import { Calendar, Clock, MapPin, Phone, Mail, CheckCircle, XCircle, Clock as ClockIcon, Eye, Edit } from 'lucide-react';
 
@@ -213,12 +213,18 @@ export default function AdminServiceRequests({ auth, serviceRequests }: AdminSer
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <div className="flex items-center space-x-2">
-                                                <button className="text-cerulean-600 hover:text-cerulean-900 dark:text-cerulean-400 dark:hover:text-cerulean-300">
+                                                <Link
+                                                    href={`/service-requests/${request.id}`}
+                                                    className="text-cerulean-600 hover:text-cerulean-900 dark:text-cerulean-400 dark:hover:text-cerulean-300"
+                                                >
                                                     <Eye className="h-4 w-4" />
-                                                </button>
-                                                <button className="text-desert_sand-600 hover:text-desert_sand-900 dark:text-desert_sand-400 dark:hover:text-desert_sand-300">
+                                                </Link>
+                                                <Link
+                                                    href={`/service-requests/${request.id}`}
+                                                    className="text-desert_sand-600 hover:text-desert_sand-900 dark:text-desert_sand-400 dark:hover:text-desert_sand-300"
+                                                >
                                                     <Edit className="h-4 w-4" />
-                                                </button>
+                                                </Link>
                                             </div>
                                         </td>
                                     </tr>

@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout';
 import { Calendar, Clock, MapPin, Phone, Mail, CheckCircle, XCircle, Clock as ClockIcon } from 'lucide-react';
 
@@ -251,12 +251,20 @@ export default function MyServiceRequests({ auth, serviceRequests }: MyServiceRe
                                         </div>
                                         
                                         <div className="flex space-x-3">
-                                            <a
+                                            <Link
                                                 href={`/service-requests/${request.id}`}
                                                 className="text-sm text-cerulean-600 dark:text-cerulean-400 hover:text-cerulean-700 dark:hover:text-cerulean-300 font-medium"
                                             >
                                                 View Details
-                                            </a>
+                                            </Link>
+                                            {!request.client_confirmed && (
+                                                <Link
+                                                    href={`/service-requests/${request.id}`}
+                                                    className="text-sm text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium"
+                                                >
+                                                    Confirm Request
+                                                </Link>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

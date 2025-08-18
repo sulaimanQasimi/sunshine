@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/service-requests/{serviceRequest}', [ServiceRequestController::class, 'show'])->name('service-requests.show');
     Route::post('/service-requests/{serviceRequest}/confirm', [ServiceRequestController::class, 'confirm'])->name('service-requests.confirm');
     Route::get('/my-service-requests', [ServiceRequestController::class, 'myRequests'])->name('service-requests.my');
+    Route::patch('/service-requests/{serviceRequest}', [ServiceRequestController::class, 'update'])->name('service-requests.update');
     
     // Admin routes
     Route::middleware(['admin'])->group(function () {
