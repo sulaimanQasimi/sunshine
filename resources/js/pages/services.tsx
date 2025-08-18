@@ -1,8 +1,58 @@
+import { useState } from 'react';
 import GuestLayout from '@/layouts/GuestLayout';
 import { Link } from '@inertiajs/react';
-import { ArrowRight, CheckCircle, Clock, DollarSign, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, DollarSign, Star, Zap, Calendar, Plus, Minus } from 'lucide-react';
 
-export default function Services() {
+interface Service {
+    id: number;
+    name: string;
+    description: string;
+    base_price: number;
+    duration: string;
+    icon: any;
+    features: string[];
+    is_special_offer?: boolean;
+    special_price?: number;
+    offer_end_date?: string;
+    additional_items?: AdditionalItem[];
+}
+
+interface AdditionalItem {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    duration: string;
+}
+
+interface ServicesProps {
+    services: Service[];
+}
+
+export default function Services({ services }: ServicesProps) {
+    const [selectedService, setSelectedService] = useState<Service | null>(null);
+    const [selectedItems, setSelectedItems] = useState<AdditionalItem[]>([]);
+    const [showRequestModal, setShowRequestModal] = useState(false);
+
+    const addAdditionalItem = (item: AdditionalItem) => {
+        setSelectedItems([...selectedItems, item]);
+    };
+
+    const removeAdditionalItem = (itemId: number) => {
+        setSelectedItems(selectedItems.filter(item => item.id !== itemId));
+    };
+
+    const calculateTotalPrice = () => {
+        if (!selectedService) return 0;
+        const basePrice = selectedService.special_price || selectedService.base_price;
+        const additionalPrice = selectedItems.reduce((sum, item) => sum + item.price, 0);
+        return basePrice + additionalPrice;
+    };
+
+    const isOfferExpired = (endDate: string) => {
+        return new Date(endDate) < new Date();
+    };
+
     return (
         <GuestLayout title="Our Services">
             {/* Hero Section */}
@@ -20,31 +70,69 @@ export default function Services() {
                 </div>
             </div>
 
+            {/* Special Offers Banner */}
+            <div className="bg-gradient-to-r from-orange-500 to-red-500">
+                <div className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+                    <div className="text-center">
+                        <div className="flex items-center justify-center mb-4">
+                            <Zap className="h-8 w-8 text-white mr-2" />
+                            <h2 className="text-2xl font-bold text-white">Special Offers</h2>
+                        </div>
+                        <p className="text-orange-100 text-lg">
+                            Limited time offers on selected services. Book now to secure your discount!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             {/* Services Grid */}
             <div className="bg-gray-50 dark:bg-gray-900 py-24 sm:py-32">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:max-w-none">
                         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
                             {services.map((service) => (
-                                <div key={service.name} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                                <div key={service.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden relative">
+                                    {service.is_special_offer && service.offer_end_date && !isOfferExpired(service.offer_end_date) && (
+                                        <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
+                                            <Zap className="h-4 w-4 mr-1" />
+                                            Special Offer
+                                        </div>
+                                    )}
+                                    
                                     <div className="p-6">
                                         <div className="flex items-center justify-between mb-4">
                                             <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
-                                                <service.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                                                <CheckCircle className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                                             </div>
                                             <div className="flex items-center">
-                                                <span className="text-2xl font-bold text-gray-900 dark:text-white">
-                                                    ${service.price}
-                                                </span>
-                                                <span className="text-sm text-gray-500 dark:text-gray-400 ml-1">/hour</span>
+                                                {service.is_special_offer && service.special_price && !isOfferExpired(service.offer_end_date || '') ? (
+                                                    <div className="text-right">
+                                                        <span className="text-lg line-through text-gray-400">
+                                                            ${service.base_price}
+                                                        </span>
+                                                        <span className="text-2xl font-bold text-red-600 dark:text-red-400 ml-2">
+                                                            ${service.special_price}
+                                                        </span>
+                                                        <span className="text-sm text-gray-500 dark:text-gray-400 ml-1">/hour</span>
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex items-center">
+                                                        <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                                                            ${service.base_price}
+                                                        </span>
+                                                        <span className="text-sm text-gray-500 dark:text-gray-400 ml-1">/hour</span>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
+                                        
                                         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                                             {service.name}
                                         </h3>
                                         <p className="text-gray-600 dark:text-gray-300 mb-4">
                                             {service.description}
                                         </p>
+                                        
                                         <ul className="space-y-2 mb-6">
                                             {service.features.map((feature) => (
                                                 <li key={feature} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
@@ -53,17 +141,38 @@ export default function Services() {
                                                 </li>
                                             ))}
                                         </ul>
-                                        <div className="flex items-center justify-between">
+                                        
+                                        <div className="flex items-center justify-between mb-4">
                                             <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                                                 <Clock className="h-4 w-4 mr-1" />
                                                 {service.duration}
                                             </div>
+                                            {service.is_special_offer && service.offer_end_date && !isOfferExpired(service.offer_end_date) && (
+                                                <div className="flex items-center text-sm text-red-600 dark:text-red-400">
+                                                    <Calendar className="h-4 w-4 mr-1" />
+                                                    Ends {new Date(service.offer_end_date).toLocaleDateString()}
+                                                </div>
+                                            )}
+                                        </div>
+                                        
+                                        <div className="space-y-3">
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedService(service);
+                                                    setSelectedItems([]);
+                                                    setShowRequestModal(true);
+                                                }}
+                                                className="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                            >
+                                                Select Service
+                                                <ArrowRight className="ml-2 h-4 w-4" />
+                                            </button>
+                                            
                                             <Link
                                                 href="/contact"
-                                                className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium"
+                                                className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                             >
                                                 Get Quote
-                                                <ArrowRight className="ml-1 h-4 w-4" />
                                             </Link>
                                         </div>
                                     </div>
@@ -73,6 +182,119 @@ export default function Services() {
                     </div>
                 </div>
             </div>
+
+            {/* Request Modal */}
+            {showRequestModal && selectedService && (
+                <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+                    <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white dark:bg-gray-800">
+                        <div className="mt-3">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                                    Request Service: {selectedService.name}
+                                </h3>
+                                <button
+                                    onClick={() => setShowRequestModal(false)}
+                                    className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                            
+                            <div className="space-y-6">
+                                {/* Service Details */}
+                                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                                    <h4 className="font-medium text-gray-900 dark:text-white mb-2">Selected Service</h4>
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-gray-600 dark:text-gray-300">{selectedService.name}</span>
+                                        <span className="font-semibold text-gray-900 dark:text-white">
+                                            ${selectedService.special_price || selectedService.base_price}/hour
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Additional Items */}
+                                <div>
+                                    <h4 className="font-medium text-gray-900 dark:text-white mb-3">Additional Services</h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                                        {selectedService.additional_items?.map((item) => (
+                                            <div key={item.id} className="border border-gray-200 dark:border-gray-600 rounded-lg p-3">
+                                                <div className="flex justify-between items-start mb-2">
+                                                    <div>
+                                                        <h5 className="font-medium text-gray-900 dark:text-white">{item.name}</h5>
+                                                        <p className="text-sm text-gray-600 dark:text-gray-300">{item.description}</p>
+                                                    </div>
+                                                    <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                                                        +${item.price}
+                                                    </span>
+                                                </div>
+                                                <div className="flex justify-between items-center">
+                                                    <span className="text-xs text-gray-500 dark:text-gray-400">{item.duration}</span>
+                                                    <button
+                                                        onClick={() => addAdditionalItem(item)}
+                                                        className="flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm"
+                                                    >
+                                                        <Plus className="h-4 w-4 mr-1" />
+                                                        Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Selected Additional Items */}
+                                    {selectedItems.length > 0 && (
+                                        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                                            <h5 className="font-medium text-gray-900 dark:text-white mb-2">Selected Additional Services:</h5>
+                                            <div className="space-y-2">
+                                                {selectedItems.map((item, index) => (
+                                                    <div key={index} className="flex justify-between items-center">
+                                                        <span className="text-sm text-gray-600 dark:text-gray-300">{item.name}</span>
+                                                        <div className="flex items-center">
+                                                            <span className="text-sm font-semibold text-gray-900 dark:text-white mr-2">
+                                                                +${item.price}
+                                                            </span>
+                                                            <button
+                                                                onClick={() => removeAdditionalItem(item.id)}
+                                                                className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
+                                                            >
+                                                                <Minus className="h-4 w-4" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Total */}
+                                <div className="border-t pt-4">
+                                    <div className="flex justify-between items-center text-lg font-semibold text-gray-900 dark:text-white">
+                                        <span>Total Estimated Cost:</span>
+                                        <span>${calculateTotalPrice()}/hour</span>
+                                    </div>
+                                </div>
+
+                                {/* Action Buttons */}
+                                <div className="flex space-x-3">
+                                    <button
+                                        onClick={() => setShowRequestModal(false)}
+                                        className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <Link
+                                        href={`/service-requests/create/${selectedService.id}`}
+                                        className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 text-center"
+                                    >
+                                        Request Service
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Why Choose Us */}
             <div className="bg-white dark:bg-gray-800 py-24 sm:py-32">
@@ -103,58 +325,6 @@ export default function Services() {
                                 </div>
                             ))}
                         </dl>
-                    </div>
-                </div>
-            </div>
-
-            {/* Pricing Section */}
-            <div className="bg-gray-50 dark:bg-gray-900 py-24 sm:py-32">
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div className="mx-auto max-w-2xl text-center">
-                        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-                            Transparent Pricing
-                        </h2>
-                        <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-                            No hidden fees, no surprises. Our pricing is clear and competitive.
-                        </p>
-                    </div>
-                    <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-3">
-                        {pricingPlans.map((plan) => (
-                            <div key={plan.name} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-8">
-                                <div className="text-center">
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                        {plan.name}
-                                    </h3>
-                                    <div className="mt-4 flex items-baseline justify-center">
-                                        <span className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                            ${plan.price}
-                                        </span>
-                                        <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                                            /hour
-                                        </span>
-                                    </div>
-                                    <p className="mt-4 text-sm text-gray-600 dark:text-gray-300">
-                                        {plan.description}
-                                    </p>
-                                </div>
-                                <ul className="mt-8 space-y-3">
-                                    {plan.features.map((feature) => (
-                                        <li key={feature} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                                            <CheckCircle className="h-4 w-4 text-green-500 mr-3 flex-shrink-0" />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="mt-8">
-                                    <Link
-                                        href="/contact"
-                                        className="block w-full rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                                    >
-                                        Get Started
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </div>
@@ -192,92 +362,7 @@ export default function Services() {
     );
 }
 
-const services = [
-    {
-        name: 'Web Development',
-        description: 'Custom web applications and websites built with modern technologies.',
-        price: 75,
-        duration: '2-4 weeks',
-        icon: CheckCircle,
-        features: [
-            'Responsive design',
-            'SEO optimization',
-            'Performance optimization',
-            'Security implementation',
-            'Content management system'
-        ]
-    },
-    {
-        name: 'Mobile Development',
-        description: 'Native and cross-platform mobile applications for iOS and Android.',
-        price: 85,
-        duration: '4-8 weeks',
-        icon: CheckCircle,
-        features: [
-            'Native iOS/Android apps',
-            'Cross-platform solutions',
-            'App store optimization',
-            'Push notifications',
-            'Offline functionality'
-        ]
-    },
-    {
-        name: 'UI/UX Design',
-        description: 'User-centered design solutions that enhance user experience.',
-        price: 65,
-        duration: '1-3 weeks',
-        icon: CheckCircle,
-        features: [
-            'User research',
-            'Wireframing & prototyping',
-            'Visual design',
-            'User testing',
-            'Design systems'
-        ]
-    },
-    {
-        name: 'Digital Marketing',
-        description: 'Comprehensive digital marketing strategies to grow your business.',
-        price: 55,
-        duration: 'Ongoing',
-        icon: CheckCircle,
-        features: [
-            'SEO & SEM',
-            'Social media marketing',
-            'Content marketing',
-            'Email campaigns',
-            'Analytics & reporting'
-        ]
-    },
-    {
-        name: 'Consulting',
-        description: 'Expert advice on technology strategy and digital transformation.',
-        price: 95,
-        duration: 'Flexible',
-        icon: CheckCircle,
-        features: [
-            'Technology assessment',
-            'Strategy development',
-            'Process optimization',
-            'Team training',
-            'Ongoing support'
-        ]
-    },
-    {
-        name: 'Maintenance & Support',
-        description: 'Ongoing maintenance and technical support for your applications.',
-        price: 45,
-        duration: 'Monthly',
-        icon: CheckCircle,
-        features: [
-            'Bug fixes',
-            'Security updates',
-            'Performance monitoring',
-            '24/7 support',
-            'Regular backups'
-        ]
-    }
-];
+
 
 const benefits = [
     {
@@ -295,44 +380,4 @@ const benefits = [
         description: 'We commit to delivering projects on time while maintaining the highest quality standards.',
         icon: Clock,
     },
-];
-
-const pricingPlans = [
-    {
-        name: 'Basic',
-        price: 45,
-        description: 'Perfect for small projects and startups',
-        features: [
-            'Basic consultation',
-            'Standard development',
-            'Email support',
-            'Basic documentation'
-        ]
-    },
-    {
-        name: 'Professional',
-        price: 75,
-        description: 'Ideal for growing businesses',
-        features: [
-            'Priority consultation',
-            'Advanced development',
-            'Phone & email support',
-            'Comprehensive documentation',
-            'Performance optimization'
-        ]
-    },
-    {
-        name: 'Enterprise',
-        price: 95,
-        description: 'For large-scale projects',
-        features: [
-            'Dedicated consultant',
-            'Custom development',
-            '24/7 support',
-            'Full documentation',
-            'Performance optimization',
-            'Security audit',
-            'Ongoing maintenance'
-        ]
-    }
 ];

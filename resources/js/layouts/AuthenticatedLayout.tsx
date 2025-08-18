@@ -10,7 +10,9 @@ import {
     Menu, 
     X,
     Bell,
-    Search
+    Search,
+    FileText,
+    Shield
 } from 'lucide-react';
 
 interface AuthenticatedLayoutProps extends PropsWithChildren {
@@ -33,9 +35,15 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
 
     const navigation = [
         { name: 'Dashboard', href: '/dashboard', icon: Home },
+        { name: 'My Service Requests', href: '/my-service-requests', icon: FileText },
         { name: 'Profile', href: '/profile', icon: User },
         { name: 'Settings', href: '/settings', icon: Settings },
     ];
+
+    // Add admin navigation items if user is admin
+    const adminNavigation = user.role === 'admin' ? [
+        { name: 'Admin Dashboard', href: '/admin/service-requests', icon: Shield },
+    ] : [];
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -78,6 +86,30 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                                 {item.name}
                             </Link>
                         ))}
+                        
+                        {/* Admin navigation separator and items */}
+                        {adminNavigation.length > 0 && (
+                            <>
+                                <div className="px-2 py-2">
+                                    <div className="h-px bg-gray-200 dark:bg-gray-700"></div>
+                                </div>
+                                {adminNavigation.map((item) => (
+                                    <Link
+                                        key={item.name}
+                                        href={item.href}
+                                        className={cn(
+                                            "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
+                                            route().current(item.href) 
+                                                ? "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300"
+                                                : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
+                                        )}
+                                    >
+                                        <item.icon className="mr-3 h-5 w-5" />
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </>
+                        )}
                     </nav>
                 </div>
             </div>
@@ -111,6 +143,30 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                                 {item.name}
                             </Link>
                         ))}
+                        
+                        {/* Admin navigation separator and items */}
+                        {adminNavigation.length > 0 && (
+                            <>
+                                <div className="px-2 py-2">
+                                    <div className="h-px bg-gray-200 dark:bg-gray-700"></div>
+                                </div>
+                                {adminNavigation.map((item) => (
+                                    <Link
+                                        key={item.name}
+                                        href={item.href}
+                                        className={cn(
+                                            "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
+                                            route().current(item.href) 
+                                                ? "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300"
+                                                : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
+                                        )}
+                                    >
+                                        <item.icon className="mr-3 h-5 w-5" />
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </>
+                        )}
                     </nav>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -21,7 +22,14 @@ class HomeController extends Controller
      */
     public function services(): Response
     {
-        return Inertia::render('services');
+        $services = Service::with('additionalItems')
+            ->active()
+            ->orderBy('name')
+            ->get();
+
+        return Inertia::render('services', [
+            'services' => $services,
+        ]);
     }
 
     /**

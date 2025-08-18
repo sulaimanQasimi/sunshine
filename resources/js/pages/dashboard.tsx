@@ -203,7 +203,7 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                     </div>
                     <div className="p-6">
                         <div className="space-y-4">
-                            <button className="w-full flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-lg transition-colors">
+                            <a href="/services" className="w-full flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-lg transition-colors">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
                                         <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -222,9 +222,9 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                                 <div className="flex-shrink-0">
                                     <TrendingUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                                 </div>
-                            </button>
+                            </a>
 
-                            <button className="w-full flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 rounded-lg transition-colors">
+                            <a href="/my-service-requests" className="w-full flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 rounded-lg transition-colors">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
                                         <div className="h-8 w-8 bg-green-600 rounded-lg flex items-center justify-center">
@@ -243,9 +243,9 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                                 <div className="flex-shrink-0">
                                     <Calendar className="h-5 w-5 text-green-600 dark:text-green-400" />
                                 </div>
-                            </button>
+                            </a>
 
-                            <button className="w-full flex items-center justify-between p-4 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 rounded-lg transition-colors">
+                            <a href="/profile" className="w-full flex items-center justify-between p-4 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 rounded-lg transition-colors">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
                                         <div className="h-8 w-8 bg-purple-600 rounded-lg flex items-center justify-center">
@@ -264,7 +264,7 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                                 <div className="flex-shrink-0">
                                     <Users className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                                 </div>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

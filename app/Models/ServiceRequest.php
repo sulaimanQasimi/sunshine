@@ -10,39 +10,45 @@ class ServiceRequest extends Model
 {
     use HasFactory;
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'requests';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'user_id',
         'service_id',
         'status',
+        'base_price',
+        'total_price',
+        'selected_additional_items',
+        'description',
+        'client_name',
+        'client_email',
+        'client_phone',
+        'client_address',
+        'house_number',
+        'city',
+        'state',
+        'postal_code',
+        'country',
+        'preferred_date',
+        'preferred_time',
+        'special_requirements',
+        'additional_notes',
+        'client_confirmed',
+        'confirmed_at',
+        'admin_notes',
+        'assigned_to',
+    ];
+
+    protected $casts = [
+        'base_price' => 'decimal:2',
+        'total_price' => 'decimal:2',
+        'selected_additional_items' => 'array',
+        'preferred_date' => 'date',
+        'preferred_time' => 'datetime',
+        'client_confirmed' => 'boolean',
+        'confirmed_at' => 'datetime',
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-        ];
-    }
-
-    /**
-     * Get the user that owns the request
+     * Get the user that owns the service request.
      */
     public function user(): BelongsTo
     {
@@ -50,7 +56,7 @@ class ServiceRequest extends Model
     }
 
     /**
-     * Get the service for the request
+     * Get the service for this request.
      */
     public function service(): BelongsTo
     {
@@ -58,34 +64,80 @@ class ServiceRequest extends Model
     }
 
     /**
-     * Check if request is pending
+     * Get the admin assigned to this request.
      */
-    public function isPending(): bool
+    public function assignedTo(): BelongsTo
     {
-        return $this->status === 'pending';
+        return $this->belongsTo(User::class, 'assigned_to');
     }
 
     /**
-     * Check if request is approved
+     * Scope to get requests by status.
      */
-    public function isApproved(): bool
+    public function scopeByStatus($query, $status)
     {
-        return $this->status === 'approved';
+        return $query->where('status', $status);
     }
 
     /**
-     * Check if request is completed
+     * Scope to get pending requests.
      */
-    public function isCompleted(): bool
+    public function scopePending($query)
     {
-        return $this->status === 'completed';
+        return $query->where('status', 'pending');
     }
 
     /**
-     * Check if request is cancelled
+     * Scope to get confirmed requests.
      */
-    public function isCancelled(): bool
+    public function scopeConfirmed($query)
     {
-        return $this->status === 'cancelled';
+        return $query->where('client_confirmed', true);
+    }
+
+    /**
+     * Get the full address as a string.
+     */
+    public function getFullAddressAttribute(): string
+    {
+        $address = $this->client_address;
+        if ($this->house_number) {
+            $address = $this->house_number . ' ' . $address;
+        }
+        return $address . ', ' . $this->city . ', ' . $this->state . ' ' . $this->postal_code . ', ' . $this->country;
+    }
+
+    /**
+     * Get the status badge color.
+     */
+    public function getStatusColorAttribute(): string
+    {
+        return match($this->status) {
+            'pending' => 'yellow',
+            'approved' => 'blue',
+            'in_progress' => 'purple',
+            'completed' => 'green',
+            'cancelled' => 'red',
+            default => 'gray',
+        };
+    }
+
+    /**
+     * Confirm the request.
+     */
+    public function confirm(): void
+    {
+        $this->update([
+            'client_confirmed' => true,
+            'confirmed_at' => now(),
+        ]);
+    }
+
+    /**
+     * Update the status.
+     */
+    public function updateStatus(string $status): void
+    {
+        $this->update(['status' => $status]);
     }
 }
