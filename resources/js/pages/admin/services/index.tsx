@@ -71,7 +71,7 @@ export default function AdminServices({ auth, services }: AdminServicesProps) {
                     <div className="mt-4 sm:mt-0">
                         <Link
                             href="/admin/services/create"
-                            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cerulean-500 hover:bg-cerulean-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cerulean-500"
                         >
                             <Plus className="h-4 w-4 mr-2" />
                             Add New Service
@@ -156,13 +156,13 @@ export default function AdminServices({ auth, services }: AdminServicesProps) {
                                             <div className="flex items-center space-x-2">
                                                 <Link
                                                     href={`/admin/services/${service.id}`}
-                                                    className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
+                                                    className="text-cerulean-600 hover:text-cerulean-900 dark:text-cerulean-400 dark:hover:text-cerulean-300"
                                                 >
                                                     <Eye className="h-4 w-4" />
                                                 </Link>
                                                 <Link
                                                     href={`/admin/services/${service.id}/edit`}
-                                                    className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300"
+                                                    className="text-desert_sand-600 hover:text-desert_sand-900 dark:text-desert_sand-400 dark:hover:text-desert_sand-300"
                                                 >
                                                     <Edit className="h-4 w-4" />
                                                 </Link>

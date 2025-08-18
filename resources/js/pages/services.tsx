@@ -7,12 +7,12 @@ interface Service {
     id: number;
     name: string;
     description: string;
-    base_price: number;
+    base_price: number | string;
     duration: string;
     icon: any;
     features: string[];
     is_special_offer?: boolean;
-    special_price?: number;
+    special_price?: number | string;
     offer_end_date?: string;
     additional_items?: AdditionalItem[];
 }
@@ -44,13 +44,24 @@ export default function Services({ services }: ServicesProps) {
 
     const calculateTotalPrice = () => {
         if (!selectedService) return 0;
-        const basePrice = selectedService.special_price || selectedService.base_price;
+        const basePrice = typeof selectedService.special_price === 'string' 
+            ? parseFloat(selectedService.special_price) 
+            : (selectedService.special_price || 0);
+        const actualBasePrice = typeof selectedService.base_price === 'string' 
+            ? parseFloat(selectedService.base_price) 
+            : selectedService.base_price;
+        const finalBasePrice = basePrice || actualBasePrice;
         const additionalPrice = selectedItems.reduce((sum, item) => sum + item.price, 0);
-        return basePrice + additionalPrice;
+        return finalBasePrice + additionalPrice;
     };
 
     const isOfferExpired = (endDate: string) => {
         return new Date(endDate) < new Date();
+    };
+
+    const formatPrice = (price: number | string | null | undefined) => {
+        const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+        return `$${(numPrice || 0).toFixed(2)}`;
     };
 
     return (
@@ -108,17 +119,17 @@ export default function Services({ services }: ServicesProps) {
                                                 {service.is_special_offer && service.special_price && !isOfferExpired(service.offer_end_date || '') ? (
                                                     <div className="text-right">
                                                         <span className="text-lg line-through text-gray-400">
-                                                            ${service.base_price}
+                                                            {formatPrice(service.base_price)}
                                                         </span>
                                                         <span className="text-2xl font-bold text-red-600 dark:text-red-400 ml-2">
-                                                            ${service.special_price}
+                                                            {formatPrice(service.special_price)}
                                                         </span>
                                                         <span className="text-sm text-gray-500 dark:text-gray-400 ml-1">/hour</span>
                                                     </div>
                                                 ) : (
                                                     <div className="flex items-center">
                                                         <span className="text-2xl font-bold text-gray-900 dark:text-white">
-                                                            ${service.base_price}
+                                                            {formatPrice(service.base_price)}
                                                         </span>
                                                         <span className="text-sm text-gray-500 dark:text-gray-400 ml-1">/hour</span>
                                                     </div>
@@ -207,7 +218,7 @@ export default function Services({ services }: ServicesProps) {
                                     <div className="flex justify-between items-center">
                                         <span className="text-gray-600 dark:text-gray-300">{selectedService.name}</span>
                                         <span className="font-semibold text-gray-900 dark:text-white">
-                                            ${selectedService.special_price || selectedService.base_price}/hour
+                                            {formatPrice(selectedService.special_price || selectedService.base_price)}/hour
                                         </span>
                                     </div>
                                 </div>

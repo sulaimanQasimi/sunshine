@@ -15,7 +15,7 @@ export default function GuestLayout({ children, title }: GuestLayoutProps) {
                     <div className="flex justify-between h-16">
                         <div className="flex items-center">
                             <Link href="/" className="flex items-center space-x-2">
-                                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                <div className="w-8 h-8 bg-cerulean-500 rounded-lg flex items-center justify-center">
                                     <span className="text-white font-bold text-sm">S</span>
                                 </div>
                                 <span className="text-xl font-bold text-gray-900 dark:text-white">
@@ -28,8 +28,8 @@ export default function GuestLayout({ children, title }: GuestLayoutProps) {
                             <Link 
                                 href="/" 
                                 className={cn(
-                                    "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium",
-                                    route().current('home') && "text-blue-600 dark:text-blue-400"
+                                    "text-gray-700 dark:text-gray-300 hover:text-cerulean-600 dark:hover:text-cerulean-400 px-3 py-2 rounded-md text-sm font-medium",
+                                    route().current('home') && "text-cerulean-600 dark:text-cerulean-400"
                                 )}
                             >
                                 Home
@@ -37,8 +37,8 @@ export default function GuestLayout({ children, title }: GuestLayoutProps) {
                             <Link 
                                 href="/services" 
                                 className={cn(
-                                    "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium",
-                                    route().current('services') && "text-blue-600 dark:text-blue-400"
+                                    "text-gray-700 dark:text-gray-300 hover:text-cerulean-600 dark:hover:text-cerulean-400 px-3 py-2 rounded-md text-sm font-medium",
+                                    route().current('services') && "text-cerulean-600 dark:text-cerulean-400"
                                 )}
                             >
                                 Services
@@ -46,15 +46,15 @@ export default function GuestLayout({ children, title }: GuestLayoutProps) {
                             <Link 
                                 href="/contact" 
                                 className={cn(
-                                    "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium",
-                                    route().current('contact') && "text-blue-600 dark:text-blue-400"
+                                    "text-gray-700 dark:text-gray-300 hover:text-cerulean-600 dark:hover:text-cerulean-400 px-3 py-2 rounded-md text-sm font-medium",
+                                    route().current('contact') && "text-cerulean-600 dark:text-cerulean-400"
                                 )}
                             >
                                 Contact
                             </Link>
                             <Link 
                                 href="/login" 
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                                className="bg-cerulean-500 hover:bg-cerulean-700 text-white px-4 py-2 rounded-md text-sm font-medium"
                             >
                                 Login
                             </Link>

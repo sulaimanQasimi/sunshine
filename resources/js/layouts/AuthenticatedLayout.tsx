@@ -58,7 +58,7 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                 <div className="fixed inset-y-0 left-0 flex w-64 flex-col bg-white dark:bg-gray-800">
                     <div className="flex h-16 items-center justify-between px-4">
                         <div className="flex items-center space-x-2">
-                            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-cerulean-500 rounded-lg flex items-center justify-center">
                                 <span className="text-white font-bold text-sm">S</span>
                             </div>
                             <span className="text-xl font-bold text-gray-900 dark:text-white">
@@ -80,7 +80,7 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                                 className={cn(
                                     "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
                                     route().current(item.href) 
-                                        ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300"
+                                        ? "bg-cerulean-100 dark:bg-cerulean-900 text-cerulean-700 dark:text-cerulean-300"
                                         : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
                                 )}
                             >
@@ -102,7 +102,7 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                                         className={cn(
                                             "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
                                             route().current(item.href) 
-                                                ? "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300"
+                                                ? "bg-coral_pink-100 dark:bg-coral_pink-900 text-coral_pink-700 dark:text-coral_pink-300"
                                                 : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
                                         )}
                                     >
@@ -121,7 +121,7 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                 <div className="flex flex-col flex-grow bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
                     <div className="flex h-16 items-center px-4">
                         <div className="flex items-center space-x-2">
-                            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-cerulean-500 rounded-lg flex items-center justify-center">
                                 <span className="text-white font-bold text-sm">S</span>
                             </div>
                             <span className="text-xl font-bold text-gray-900 dark:text-white">
@@ -137,7 +137,7 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                                 className={cn(
                                     "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
                                     route().current(item.href) 
-                                        ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300"
+                                        ? "bg-cerulean-100 dark:bg-cerulean-900 text-cerulean-700 dark:text-cerulean-300"
                                         : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
                                 )}
                             >
@@ -159,7 +159,7 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                                         className={cn(
                                             "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
                                             route().current(item.href) 
-                                                ? "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300"
+                                                ? "bg-coral_pink-100 dark:bg-coral_pink-900 text-coral_pink-700 dark:text-coral_pink-300"
                                                 : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
                                         )}
                                     >
@@ -207,7 +207,7 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                             {/* Profile dropdown */}
                             <div className="relative group">
                                 <div className="flex items-center space-x-3 cursor-pointer">
-                                    <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center">
+                                    <div className="h-8 w-8 rounded-full bg-cerulean-500 flex items-center justify-center">
                                         <span className="text-sm font-medium text-white">
                                             {getInitials(user.name)}
                                         </span>

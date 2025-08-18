@@ -23,7 +23,7 @@ export default function Register() {
                 <div>
                     <div className="flex justify-center">
                         <Link href="/" className="flex items-center space-x-2">
-                            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <div className="w-10 h-10 bg-cerulean-500 rounded-lg flex items-center justify-center">
                                 <span className="text-white font-bold text-lg">S</span>
                             </div>
                             <span className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -38,7 +38,7 @@ export default function Register() {
                         Or{' '}
                         <Link
                             href="/login"
-                            className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+                            className="font-medium text-cerulean-600 hover:text-cerulean-500 dark:text-cerulean-400 dark:hover:text-cerulean-300"
                         >
                             sign in to your existing account
                         </Link>
@@ -62,7 +62,7 @@ export default function Register() {
                                     required
                                     value={data.name}
                                     onChange={(e) => setData('name', e.target.value)}
-                                    className={`appearance-none relative block w-full pl-10 pr-3 py-2 border rounded-md placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm ${
+                                    className={`appearance-none relative block w-full pl-10 pr-3 py-2 border rounded-md placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none focus:ring-cerulean-500 focus:border-cerulean-500 focus:z-10 sm:text-sm ${
                                         errors.name
                                             ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20'
                                             : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
@@ -91,7 +91,7 @@ export default function Register() {
                                     required
                                     value={data.email}
                                     onChange={(e) => setData('email', e.target.value)}
-                                    className={`appearance-none relative block w-full pl-10 pr-3 py-2 border rounded-md placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm ${
+                                    className={`appearance-none relative block w-full pl-10 pr-3 py-2 border rounded-md placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none focus:ring-cerulean-500 focus:border-cerulean-500 focus:z-10 sm:text-sm ${
                                         errors.email
                                             ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20'
                                             : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
@@ -120,7 +120,7 @@ export default function Register() {
                                     required
                                     value={data.password}
                                     onChange={(e) => setData('password', e.target.value)}
-                                    className={`appearance-none relative block w-full pl-10 pr-10 py-2 border rounded-md placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm ${
+                                    className={`appearance-none relative block w-full pl-10 pr-10 py-2 border rounded-md placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none focus:ring-cerulean-500 focus:border-cerulean-500 focus:z-10 sm:text-sm ${
                                         errors.password
                                             ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20'
                                             : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
@@ -160,7 +160,7 @@ export default function Register() {
                                     required
                                     value={data.password_confirmation}
                                     onChange={(e) => setData('password_confirmation', e.target.value)}
-                                    className={`appearance-none relative block w-full pl-10 pr-10 py-2 border rounded-md placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm ${
+                                    className={`appearance-none relative block w-full pl-10 pr-10 py-2 border rounded-md placeholder-gray-500 text-gray-900 dark:text-white focus:outline-none focus:ring-cerulean-500 focus:border-cerulean-500 focus:z-10 sm:text-sm ${
                                         errors.password_confirmation
                                             ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/20'
                                             : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
@@ -189,7 +189,7 @@ export default function Register() {
                         <button
                             type="submit"
                             disabled={processing}
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-cerulean-500 hover:bg-cerulean-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cerulean-500 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {processing ? 'Creating account...' : 'Create account'}
                         </button>
@@ -200,7 +200,7 @@ export default function Register() {
                             Already have an account?{' '}
                             <Link
                                 href="/login"
-                                className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+                                className="font-medium text-cerulean-600 hover:text-cerulean-500 dark:text-cerulean-400 dark:hover:text-cerulean-300"
                             >
                                 Sign in here
                             </Link>
@@ -210,11 +210,11 @@ export default function Register() {
                     <div className="text-center">
                         <p className="text-xs text-gray-500 dark:text-gray-400">
                             By creating an account, you agree to our{' '}
-                            <Link href="/terms" className="text-blue-600 hover:text-blue-500 dark:text-blue-400">
+                            <Link href="/terms" className="text-cerulean-600 hover:text-cerulean-500 dark:text-cerulean-400">
                                 Terms of Service
                             </Link>{' '}
                             and{' '}
-                            <Link href="/privacy" className="text-blue-600 hover:text-blue-500 dark:text-blue-400">
+                            <Link href="/privacy" className="text-cerulean-600 hover:text-cerulean-500 dark:text-cerulean-400">
                                 Privacy Policy
                             </Link>
                         </p>
