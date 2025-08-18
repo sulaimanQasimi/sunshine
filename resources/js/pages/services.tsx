@@ -112,8 +112,8 @@ export default function Services({ services }: ServicesProps) {
                                     
                                     <div className="p-6">
                                         <div className="flex items-center justify-between mb-4">
-                                            <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
-                                                <CheckCircle className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                                            <div className="h-12 w-12 bg-cerulean-100 dark:bg-cerulean-900 rounded-lg flex items-center justify-center">
+                                                <CheckCircle className="h-6 w-6 text-cerulean-600 dark:text-cerulean-400" />
                                             </div>
                                             <div className="flex items-center">
                                                 {service.is_special_offer && service.special_price && !isOfferExpired(service.offer_end_date || '') ? (
@@ -173,7 +173,7 @@ export default function Services({ services }: ServicesProps) {
                                                     setSelectedItems([]);
                                                     setShowRequestModal(true);
                                                 }}
-                                                className="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                                className="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cerulean-500 hover:bg-cerulean-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cerulean-500"
                                             >
                                                 Select Service
                                                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -181,7 +181,7 @@ export default function Services({ services }: ServicesProps) {
                                             
                                             <Link
                                                 href="/contact"
-                                                className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                                className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cerulean-500"
                                             >
                                                 Get Quote
                                             </Link>
@@ -242,7 +242,7 @@ export default function Services({ services }: ServicesProps) {
                                                     <span className="text-xs text-gray-500 dark:text-gray-400">{item.duration}</span>
                                                     <button
                                                         onClick={() => addAdditionalItem(item)}
-                                                        className="flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm"
+                                                        className="flex items-center text-cerulean-600 dark:text-cerulean-400 hover:text-cerulean-700 dark:hover:text-cerulean-300 text-sm"
                                                     >
                                                         <Plus className="h-4 w-4 mr-1" />
                                                         Add
@@ -254,7 +254,7 @@ export default function Services({ services }: ServicesProps) {
 
                                     {/* Selected Additional Items */}
                                     {selectedItems.length > 0 && (
-                                        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                                        <div className="bg-cerulean-50 dark:bg-cerulean-900/20 p-4 rounded-lg">
                                             <h5 className="font-medium text-gray-900 dark:text-white mb-2">Selected Additional Services:</h5>
                                             <div className="space-y-2">
                                                 {selectedItems.map((item, index) => (
@@ -311,7 +311,7 @@ export default function Services({ services }: ServicesProps) {
             <div className="bg-white dark:bg-gray-800 py-24 sm:py-32">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:text-center">
-                        <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-blue-400">
+                        <h2 className="text-base font-semibold leading-7 text-cerulean-600 dark:text-cerulean-400">
                             Why Choose Our Services
                         </h2>
                         <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
@@ -327,7 +327,7 @@ export default function Services({ services }: ServicesProps) {
                             {benefits.map((benefit) => (
                                 <div key={benefit.name} className="flex flex-col">
                                     <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
-                                        <benefit.icon className="h-5 w-5 flex-none text-blue-600 dark:text-blue-400" aria-hidden="true" />
+                                        <benefit.icon className="h-5 w-5 flex-none text-cerulean-600 dark:text-cerulean-400" aria-hidden="true" />
                                         {benefit.name}
                                     </dt>
                                     <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
@@ -355,7 +355,7 @@ export default function Services({ services }: ServicesProps) {
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <Link
                                 href="/contact"
-                                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-blue-600 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-cerulean-600 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                             >
                                 Contact Us
                             </Link>

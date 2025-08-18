@@ -140,7 +140,7 @@ export default function Contact() {
                                     <div>
                                         <button
                                             type="submit"
-                                            className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                                            className="flex w-full justify-center rounded-md bg-cerulean-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cerulean-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cerulean-600"
                                         >
                                             <Send className="mr-2 h-4 w-4" />
                                             Send Message
@@ -164,7 +164,7 @@ export default function Contact() {
                                 <div className="space-y-6">
                                     <div className="flex items-start">
                                         <div className="flex-shrink-0">
-                                            <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                                            <Mail className="h-6 w-6 text-cerulean-600 dark:text-cerulean-400" />
                                         </div>
                                         <div className="ml-4">
                                             <h3 className="text-lg font-medium text-gray-900 dark:text-white">
@@ -181,7 +181,7 @@ export default function Contact() {
 
                                     <div className="flex items-start">
                                         <div className="flex-shrink-0">
-                                            <Phone className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                                            <Phone className="h-6 w-6 text-cerulean-600 dark:text-cerulean-400" />
                                         </div>
                                         <div className="ml-4">
                                             <h3 className="text-lg font-medium text-gray-900 dark:text-white">
@@ -198,7 +198,7 @@ export default function Contact() {
 
                                     <div className="flex items-start">
                                         <div className="flex-shrink-0">
-                                            <MapPin className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                                            <MapPin className="h-6 w-6 text-cerulean-600 dark:text-cerulean-400" />
                                         </div>
                                         <div className="ml-4">
                                             <h3 className="text-lg font-medium text-gray-900 dark:text-white">
@@ -214,7 +214,7 @@ export default function Contact() {
 
                                     <div className="flex items-start">
                                         <div className="flex-shrink-0">
-                                            <Clock className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                                            <Clock className="h-6 w-6 text-cerulean-600 dark:text-cerulean-400" />
                                         </div>
                                         <div className="ml-4">
                                             <h3 className="text-lg font-medium text-gray-900 dark:text-white">

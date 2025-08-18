@@ -129,7 +129,7 @@ export default function MyServiceRequests({ auth, serviceRequests }: MyServiceRe
                             </p>
                             <a
                                 href="/services"
-                                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                                className="inline-flex items-center px-4 py-2 bg-cerulean-500 text-white rounded-md hover:bg-cerulean-700"
                             >
                                 Browse Services
                             </a>
@@ -253,7 +253,7 @@ export default function MyServiceRequests({ auth, serviceRequests }: MyServiceRe
                                         <div className="flex space-x-3">
                                             <a
                                                 href={`/service-requests/${request.id}`}
-                                                className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+                                                className="text-sm text-cerulean-600 dark:text-cerulean-400 hover:text-cerulean-700 dark:hover:text-cerulean-300 font-medium"
                                             >
                                                 View Details
                                             </a>

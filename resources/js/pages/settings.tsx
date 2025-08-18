@@ -40,7 +40,7 @@ export default function Settings({ auth }: SettingsProps) {
                                         </p>
                                     </div>
                                 </div>
-                                <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-blue-600">
+                                <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-cerulean-500">
                                     <span className="inline-block h-4 w-4 transform rounded-full bg-white transition"></span>
                                 </button>
                             </div>
@@ -76,7 +76,7 @@ export default function Settings({ auth }: SettingsProps) {
                                         </p>
                                     </div>
                                 </div>
-                                <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-blue-600">
+                                <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-cerulean-500">
                                     <span className="inline-block h-4 w-4 transform rounded-full bg-white transition"></span>
                                 </button>
                             </div>

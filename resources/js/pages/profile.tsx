@@ -25,7 +25,7 @@ export default function Profile({ auth }: ProfileProps) {
                 <div className="bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-lg mb-8">
                     <div className="px-6 py-8">
                         <div className="flex items-center space-x-6">
-                            <div className="h-20 w-20 bg-blue-600 rounded-full flex items-center justify-center">
+                            <div className="h-20 w-20 bg-cerulean-500 rounded-full flex items-center justify-center">
                                 <span className="text-white font-bold text-2xl">
                                     {auth.user.name.split(' ').map(n => n[0]).join('')}
                                 </span>

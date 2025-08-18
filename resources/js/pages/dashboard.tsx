@@ -77,7 +77,7 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                     <div className="p-6">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
-                                <Users className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                                <Users className="h-8 w-8 text-cerulean-600 dark:text-cerulean-400" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -113,7 +113,7 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                     <div className="p-6">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
-                                <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+                                <CheckCircle className="h-8 w-8 text-wheat-600 dark:text-wheat-400" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -131,7 +131,7 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                     <div className="p-6">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
-                                <DollarSign className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+                                <DollarSign className="h-8 w-8 text-coral_pink-600 dark:text-coral_pink-400" />
                             </div>
                             <div className="ml-4">
                                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -203,10 +203,10 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                     </div>
                     <div className="p-6">
                         <div className="space-y-4">
-                            <a href="/services" className="w-full flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-lg transition-colors">
+                            <a href="/services" className="w-full flex items-center justify-between p-4 bg-cerulean-50 dark:bg-cerulean-900/20 hover:bg-cerulean-100 dark:hover:bg-cerulean-900/30 rounded-lg transition-colors">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
-                                        <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                                        <div className="h-8 w-8 bg-cerulean-500 rounded-lg flex items-center justify-center">
                                             <span className="text-white font-semibold text-sm">+</span>
                                         </div>
                                     </div>
@@ -220,14 +220,14 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                                     </div>
                                 </div>
                                 <div className="flex-shrink-0">
-                                    <TrendingUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                                    <TrendingUp className="h-5 w-5 text-cerulean-600 dark:text-cerulean-400" />
                                 </div>
                             </a>
 
-                            <a href="/my-service-requests" className="w-full flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 rounded-lg transition-colors">
+                            <a href="/my-service-requests" className="w-full flex items-center justify-between p-4 bg-wheat-50 dark:bg-wheat-900/20 hover:bg-wheat-100 dark:hover:bg-wheat-900/30 rounded-lg transition-colors">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
-                                        <div className="h-8 w-8 bg-green-600 rounded-lg flex items-center justify-center">
+                                        <div className="h-8 w-8 bg-wheat-500 rounded-lg flex items-center justify-center">
                                             <span className="text-white font-semibold text-sm">📋</span>
                                         </div>
                                     </div>
@@ -241,14 +241,14 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                                     </div>
                                 </div>
                                 <div className="flex-shrink-0">
-                                    <Calendar className="h-5 w-5 text-green-600 dark:text-green-400" />
+                                    <Calendar className="h-5 w-5 text-wheat-600 dark:text-wheat-400" />
                                 </div>
                             </a>
 
-                            <a href="/profile" className="w-full flex items-center justify-between p-4 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 rounded-lg transition-colors">
+                            <a href="/profile" className="w-full flex items-center justify-between p-4 bg-coral_pink-50 dark:bg-coral_pink-900/20 hover:bg-coral_pink-100 dark:hover:bg-coral_pink-900/30 rounded-lg transition-colors">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
-                                        <div className="h-8 w-8 bg-purple-600 rounded-lg flex items-center justify-center">
+                                        <div className="h-8 w-8 bg-coral_pink-500 rounded-lg flex items-center justify-center">
                                             <span className="text-white font-semibold text-sm">⚙️</span>
                                         </div>
                                     </div>
@@ -262,7 +262,7 @@ export default function Dashboard({ auth, stats, recentRequests }: DashboardProp
                                     </div>
                                 </div>
                                 <div className="flex-shrink-0">
-                                    <Users className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                                    <Users className="h-5 w-5 text-coral_pink-600 dark:text-coral_pink-400" />
                                 </div>
                             </a>
                         </div>
