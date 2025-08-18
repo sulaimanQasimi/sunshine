@@ -42,7 +42,9 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
 
     // Add admin navigation items if user is admin
     const adminNavigation = user.role === 'admin' ? [
-        { name: 'Admin Dashboard', href: '/admin/service-requests', icon: Shield },
+        { name: 'Service Requests', href: '/admin/service-requests', icon: Shield },
+        { name: 'Services', href: '/admin/services', icon: FileText },
+        { name: 'Users', href: '/admin/users', icon: User },
     ] : [];
 
     return (

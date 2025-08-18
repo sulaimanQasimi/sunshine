@@ -8,6 +8,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ServiceRequestController;
+use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 // Guest routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -34,8 +36,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     // Admin routes
     Route::middleware(['admin'])->group(function () {
+        // Service Requests Management
         Route::get('/admin/service-requests', [ServiceRequestController::class, 'index'])->name('admin.service-requests.index');
         Route::patch('/admin/service-requests/{serviceRequest}/status', [ServiceRequestController::class, 'updateStatus'])->name('admin.service-requests.update-status');
+        
+        // Services CRUD
+        Route::resource('/admin/services', AdminServiceController::class, ['as' => 'admin']);
+        
+        // Users CRUD
+        Route::resource('/admin/users', AdminUserController::class, ['as' => 'admin']);
     });
 });
 
