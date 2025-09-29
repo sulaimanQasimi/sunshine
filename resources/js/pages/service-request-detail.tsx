@@ -291,7 +291,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="client_name"
                                                     value={editData.client_name}
                                                     onChange={(e) => setEditData('client_name', e.target.value)}
-                                                    className="form-input w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     required
                                                 />
                                                 {editErrors.client_name && (
@@ -307,7 +307,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="client_email"
                                                     value={editData.client_email}
                                                     onChange={(e) => setEditData('client_email', e.target.value)}
-                                                    className="form-input w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     required
                                                 />
                                                 {editErrors.client_email && (
@@ -323,7 +323,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="client_phone"
                                                     value={editData.client_phone}
                                                     onChange={(e) => setEditData('client_phone', e.target.value)}
-                                                    className="form-input w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     required
                                                 />
                                                 {editErrors.client_phone && (
@@ -339,7 +339,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="house_number"
                                                     value={editData.house_number}
                                                     onChange={(e) => setEditData('house_number', e.target.value)}
-                                                    className="form-input w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                 />
                                                 {editErrors.house_number && (
                                                     <p className="mt-1 text-sm text-red-600 dark:text-red-400">{editErrors.house_number}</p>
@@ -354,7 +354,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="client_address"
                                                     value={editData.client_address}
                                                     onChange={(e) => setEditData('client_address', e.target.value)}
-                                                    className="form-input w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     required
                                                 />
                                                 {editErrors.client_address && (
@@ -370,7 +370,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="city"
                                                     value={editData.city}
                                                     onChange={(e) => setEditData('city', e.target.value)}
-                                                    className="form-input w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     required
                                                 />
                                                 {editErrors.city && (
@@ -386,7 +386,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="state"
                                                     value={editData.state}
                                                     onChange={(e) => setEditData('state', e.target.value)}
-                                                    className="form-input w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     required
                                                 />
                                                 {editErrors.state && (
@@ -402,7 +402,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="postal_code"
                                                     value={editData.postal_code}
                                                     onChange={(e) => setEditData('postal_code', e.target.value)}
-                                                    className="form-input w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     required
                                                 />
                                                 {editErrors.postal_code && (
@@ -418,7 +418,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="country"
                                                     value={editData.country}
                                                     onChange={(e) => setEditData('country', e.target.value)}
-                                                    className="form-input w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     required
                                                 />
                                                 {editErrors.country && (
@@ -570,7 +570,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     id="status"
                                                     value={data.status}
                                                     onChange={(e) => setData('status', e.target.value)}
-                                                    className="form-select w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                 >
                                                     <option value="pending">Pending</option>
                                                     <option value="approved">Approved</option>
@@ -591,7 +591,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                     value={data.admin_notes}
                                                     onChange={(e) => setData('admin_notes', e.target.value)}
                                                     rows={3}
-                                                    className="form-textarea w-full"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors resize-none"
                                                     placeholder="Add any admin notes..."
                                                 />
                                                 {errors.admin_notes && (
@@ -602,7 +602,7 @@ export default function ServiceRequestDetail({ auth, serviceRequest }: ServiceRe
                                                 <button
                                                     type="submit"
                                                     disabled={processing}
-                                                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+                                                    className="flex-1 px-4 py-2 bg-gradient-to-r from-cerulean-600 to-blue-600 text-white rounded-md hover:from-cerulean-700 hover:to-blue-700 disabled:opacity-50 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
                                                 >
                                                     {processing ? 'Updating...' : 'Update Status'}
                                                 </button>

@@ -92,7 +92,7 @@ export default function Contact() {
                                                     required
                                                     value={formData.name}
                                                     onChange={handleChange}
-                                                    className="form-input w-full rounded-xl border-gray-300 dark:border-gray-600 focus:border-cerulean-500 focus:ring-cerulean-500"
+                                                    className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     placeholder="John Doe"
                                                 />
                                             </div>
@@ -107,7 +107,7 @@ export default function Contact() {
                                                     required
                                                     value={formData.email}
                                                     onChange={handleChange}
-                                                    className="form-input w-full rounded-xl border-gray-300 dark:border-gray-600 focus:border-cerulean-500 focus:ring-cerulean-500"
+                                                    className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                     placeholder="john@example.com"
                                                 />
                                             </div>
@@ -123,8 +123,8 @@ export default function Contact() {
                                                     id="phone"
                                                     value={formData.phone}
                                                     onChange={handleChange}
-                                                    className="form-input w-full rounded-xl border-gray-300 dark:border-gray-600 focus:border-cerulean-500 focus:ring-cerulean-500"
-                                                    placeholder="+1 (555) 123-4567"
+                                                    className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
+                                                    placeholder="+49 1575 1450300"
                                                 />
                                             </div>
                                             <div>
@@ -137,16 +137,16 @@ export default function Contact() {
                                                     required
                                                     value={formData.subject}
                                                     onChange={handleChange}
-                                                    className="form-select w-full rounded-xl border-gray-300 dark:border-gray-600 focus:border-cerulean-500 focus:ring-cerulean-500"
+                                                    className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-3 text-gray-900 dark:text-white focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors"
                                                 >
                                                     <option value="">Select a subject</option>
                                                     <option value="general">General Inquiry</option>
-                                                    <option value="web-development">Web Development</option>
-                                                    <option value="mobile-development">Mobile Development</option>
-                                                    <option value="ui-ux-design">UI/UX Design</option>
-                                                    <option value="digital-marketing">Digital Marketing</option>
-                                                    <option value="consulting">Consulting</option>
-                                                    <option value="support">Support</option>
+                                                    <option value="cleaning-services">Cleaning Services</option>
+                                                    <option value="maintenance">Maintenance Services</option>
+                                                    <option value="special-requests">Special Requests</option>
+                                                    <option value="pricing">Pricing Information</option>
+                                                    <option value="booking">Service Booking</option>
+                                                    <option value="support">Customer Support</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -161,7 +161,7 @@ export default function Contact() {
                                                 required
                                                 value={formData.message}
                                                 onChange={handleChange}
-                                                className="form-textarea w-full rounded-xl border-gray-300 dark:border-gray-600 focus:border-cerulean-500 focus:ring-cerulean-500"
+                                                className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-2 focus:ring-cerulean-500 transition-colors resize-none"
                                                 placeholder="Tell us about your project or inquiry..."
                                             />
                                         </div>
@@ -208,10 +208,10 @@ export default function Contact() {
                                                     Email
                                                 </h3>
                                                 <p className="text-gray-600 dark:text-gray-300 text-lg">
-                                                    info@sunshine.com
+                                                    asem.espanta@gmail.com
                                                 </p>
                                                 <p className="text-gray-600 dark:text-gray-300 text-lg">
-                                                    support@sunshine.com
+                                                    asem.espanta@gmail.com
                                                 </p>
                                             </div>
                                         </div>
@@ -229,10 +229,10 @@ export default function Contact() {
                                                     Phone
                                                 </h3>
                                                 <p className="text-gray-600 dark:text-gray-300 text-lg">
-                                                    +1 (555) 123-4567
+                                                    ‪+49 1575 1450300
                                                 </p>
                                                 <p className="text-gray-600 dark:text-gray-300 text-lg">
-                                                    +1 (555) 987-6543
+                                                    ‪+49 1575 1450300
                                                 </p>
                                             </div>
                                         </div>
@@ -250,9 +250,7 @@ export default function Contact() {
                                                     Office
                                                 </h3>
                                                 <p className="text-gray-600 dark:text-gray-300 text-lg">
-                                                    123 Business Street<br />
-                                                    Suite 100<br />
-                                                    City, State 12345
+                                                    Istanbul, Turkey
                                                 </p>
                                             </div>
                                         </div>

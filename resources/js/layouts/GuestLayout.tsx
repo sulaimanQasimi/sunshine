@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { Link } from '@inertiajs/react';
 import { cn } from '@/lib/utils';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X, Sparkles, Home, Shield, Mail, User, UserPlus } from 'lucide-react';
 import { useState } from 'react';
 
 interface GuestLayoutProps extends PropsWithChildren {
@@ -40,38 +40,56 @@ export default function GuestLayout({ children, title }: GuestLayoutProps) {
                         </div>
                         
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center space-x-1">
+                        <div className="hidden md:flex items-center space-x-2">
                             <Link 
                                 href="/" 
                                 className={cn(
-                                    "group relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-cerulean-600 dark:text-cerulean-400 bg-cerulean-50 dark:bg-cerulean-900/20" 
+                                    "group relative px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg",
+                                    route().current('home') 
+                                        ? "text-white bg-gradient-to-r from-cerulean-600 to-blue-600 shadow-lg" 
+                                        : "text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-cerulean-50 dark:hover:bg-cerulean-900/20 border border-gray-200 dark:border-gray-700 hover:border-cerulean-300 dark:hover:border-cerulean-600"
                                 )}
                             >
-                                <span className="relative z-10">Home</span>
+                                <span className="relative z-10 flex items-center">
+                                    <Home className="h-4 w-4 mr-2" />
+                                    Home
+                                </span>
                                 {route().current('home') && (
-                                    <div className="absolute inset-0 bg-gradient-to-r from-cerulean-100 to-blue-100 dark:from-cerulean-900/30 dark:to-blue-900/30 rounded-xl"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-cerulean-600 to-blue-600 rounded-2xl shadow-lg"></div>
                                 )}
                             </Link>
                             <Link 
                                 href="/services" 
                                 className={cn(
-                                    "group relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-cerulean-600 dark:text-cerulean-400 bg-cerulean-50 dark:bg-cerulean-900/20" 
+                                    "group relative px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg",
+                                    route().current('services') 
+                                        ? "text-white bg-gradient-to-r from-cerulean-600 to-blue-600 shadow-lg" 
+                                        : "text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-cerulean-50 dark:hover:bg-cerulean-900/20 border border-gray-200 dark:border-gray-700 hover:border-cerulean-300 dark:hover:border-cerulean-600"
                                 )}
                             >
-                                <span className="relative z-10">Services</span>
+                                <span className="relative z-10 flex items-center">
+                                    <Shield className="h-4 w-4 mr-2" />
+                                    Services
+                                </span>
                                 {route().current('services') && (
-                                    <div className="absolute inset-0 bg-gradient-to-r from-cerulean-100 to-blue-100 dark:from-cerulean-900/30 dark:to-blue-900/30 rounded-xl"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-cerulean-600 to-blue-600 rounded-2xl shadow-lg"></div>
                                 )}
                             </Link>
                             <Link 
                                 href="/contact" 
                                 className={cn(
-                                    "group relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-cerulean-600 dark:text-cerulean-400 bg-cerulean-50 dark:bg-cerulean-900/20" 
+                                    "group relative px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg",
+                                    route().current('contact') 
+                                        ? "text-white bg-gradient-to-r from-cerulean-600 to-blue-600 shadow-lg" 
+                                        : "text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-cerulean-50 dark:hover:bg-cerulean-900/20 border border-gray-200 dark:border-gray-700 hover:border-cerulean-300 dark:hover:border-cerulean-600"
                                 )}
                             >
-                                <span className="relative z-10">Contact</span>
+                                <span className="relative z-10 flex items-center">
+                                    <Mail className="h-4 w-4 mr-2" />
+                                    Contact
+                                </span>
                                 {route().current('contact') && (
-                                    <div className="absolute inset-0 bg-gradient-to-r from-cerulean-100 to-blue-100 dark:from-cerulean-900/30 dark:to-blue-900/30 rounded-xl"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-cerulean-600 to-blue-600 rounded-2xl shadow-lg"></div>
                                 )}
                             </Link>
                         </div>
@@ -80,15 +98,21 @@ export default function GuestLayout({ children, title }: GuestLayoutProps) {
                         <div className="hidden md:flex items-center space-x-3">
                             <Link 
                                 href="/login" 
-                                className="px-6 py-2.5 rounded-xl text-sm font-semibold text-cerulean-600 dark:text-cerulean-400 bg-cerulean-50 dark:bg-cerulean-900/20 hover:bg-cerulean-100 dark:hover:bg-cerulean-900/30 transition-all duration-300 border border-cerulean-200 dark:border-cerulean-700"
+                                className="group px-6 py-3 rounded-2xl text-sm font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-cerulean-50 dark:hover:bg-cerulean-900/20 border border-gray-200 dark:border-gray-700 hover:border-cerulean-300 dark:hover:border-cerulean-600 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
                             >
-                                Login
+                                <span className="flex items-center">
+                                    <User className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform" />
+                                    Login
+                                </span>
                             </Link>
                             <Link 
                                 href="/register" 
-                                className="px-6 py-2.5 rounded-xl text-sm font-semibold text-white bg-cerulean-600 hover:bg-cerulean-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+                                className="group px-6 py-3 rounded-2xl text-sm font-semibold text-white bg-gradient-to-r from-cerulean-600 to-blue-600 hover:from-cerulean-700 hover:to-blue-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
                             >
-                                Register
+                                <span className="flex items-center">
+                                    <UserPlus className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform" />
+                                    Register
+                                </span>
                             </Link>
                         </div>
 
@@ -110,56 +134,61 @@ export default function GuestLayout({ children, title }: GuestLayoutProps) {
                     {/* Mobile Navigation */}
                     {isMobileMenuOpen && (
                         <div className="md:hidden">
-                            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 mt-4">
+                            <div className="px-3 pt-3 pb-4 space-y-2 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 mt-4">
                                 <Link 
                                     href="/" 
                                     className={cn(
-                                        "block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300",
+                                        "group flex items-center px-4 py-3 rounded-2xl text-base font-semibold transition-all duration-300 transform hover:-translate-y-0.5",
                                         route().current('home') 
-                                            ? "text-cerulean-600 dark:text-cerulean-400 bg-cerulean-50 dark:bg-cerulean-900/20" 
-                                            : "text-gray-700 dark:text-gray-300 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                                            ? "text-white bg-gradient-to-r from-cerulean-600 to-blue-600 shadow-lg" 
+                                            : "text-gray-700 dark:text-gray-300 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-cerulean-50 dark:hover:bg-cerulean-900/20"
                                     )}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
+                                    <Home className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
                                     Home
                                 </Link>
                                 <Link 
                                     href="/services" 
                                     className={cn(
-                                        "block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300",
+                                        "group flex items-center px-4 py-3 rounded-2xl text-base font-semibold transition-all duration-300 transform hover:-translate-y-0.5",
                                         route().current('services') 
-                                            ? "text-cerulean-600 dark:text-cerulean-400 bg-cerulean-50 dark:bg-cerulean-900/20" 
-                                            : "text-gray-700 dark:text-gray-300 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                                            ? "text-white bg-gradient-to-r from-cerulean-600 to-blue-600 shadow-lg" 
+                                            : "text-gray-700 dark:text-gray-300 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-cerulean-50 dark:hover:bg-cerulean-900/20"
                                     )}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
+                                    <Shield className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
                                     Services
                                 </Link>
                                 <Link 
                                     href="/contact" 
                                     className={cn(
-                                        "block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300",
+                                        "group flex items-center px-4 py-3 rounded-2xl text-base font-semibold transition-all duration-300 transform hover:-translate-y-0.5",
                                         route().current('contact') 
-                                            ? "text-cerulean-600 dark:text-cerulean-400 bg-cerulean-50 dark:bg-cerulean-900/20" 
-                                            : "text-gray-700 dark:text-gray-300 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                                            ? "text-white bg-gradient-to-r from-cerulean-600 to-blue-600 shadow-lg" 
+                                            : "text-gray-700 dark:text-gray-300 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-cerulean-50 dark:hover:bg-cerulean-900/20"
                                     )}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
+                                    <Mail className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
                                     Contact
                                 </Link>
                                 <div className="pt-4 pb-2 space-y-2">
                                     <Link 
                                         href="/login" 
-                                        className="block px-4 py-3 rounded-xl text-base font-semibold text-cerulean-600 dark:text-cerulean-400 bg-cerulean-50 dark:bg-cerulean-900/20 hover:bg-cerulean-100 dark:hover:bg-cerulean-900/30 transition-all duration-300 border border-cerulean-200 dark:border-cerulean-700"
+                                        className="group flex items-center px-4 py-3 rounded-2xl text-base font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:text-cerulean-600 dark:hover:text-cerulean-400 hover:bg-cerulean-50 dark:hover:bg-cerulean-900/20 border border-gray-200 dark:border-gray-700 hover:border-cerulean-300 dark:hover:border-cerulean-600 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
+                                        <User className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
                                         Login
                                     </Link>
                                     <Link 
                                         href="/register" 
-                                        className="block px-4 py-3 rounded-xl text-base font-semibold text-white bg-cerulean-600 hover:bg-cerulean-700 shadow-lg transition-all duration-300"
+                                        className="group flex items-center px-4 py-3 rounded-2xl text-base font-semibold text-white bg-gradient-to-r from-cerulean-600 to-blue-600 hover:from-cerulean-700 hover:to-blue-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
+                                        <UserPlus className="h-5 w-5 mr-3 group-hover:scale-110 transition-transform" />
                                         Register
                                     </Link>
                                 </div>
@@ -245,9 +274,9 @@ export default function GuestLayout({ children, title }: GuestLayoutProps) {
                         <div>
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Contact Info</h3>
                             <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-                                <li>info@blueshine.com</li>
-                                <li>+1 (555) 123-4567</li>
-                                <li>123 Business Street<br />Suite 100, City, State 12345</li>
+                                <li>asem.espanta@gmail.com</li>
+                                <li>‪+49 1575 1450300</li>
+                                <li>Sultanahmet Square<br />Fatih District, Istanbul, Turkey</li>
                             </ul>
                         </div>
                     </div>
