@@ -73,11 +73,22 @@ class ServiceController extends Controller
             'not_included' => 'nullable|string|max:1000',
             'preparation_time' => 'nullable|string|max:100',
             'cancellation_policy' => 'nullable|string|max:1000',
+            'additional_items' => 'array',
+            'additional_items.*.name' => 'required|string|max:255',
+            'additional_items.*.description' => 'nullable|string|max:1000',
+            'additional_items.*.price' => 'required|numeric|min:0',
+            'additional_items.*.duration' => 'nullable|string|max:100',
+            'additional_items.*.is_active' => 'boolean',
         ]);
 
         // Filter out empty features
         $features = array_filter($validated['features'] ?? [], function($feature) {
             return !empty(trim($feature['name'] ?? ''));
+        });
+
+        // Filter out empty additional items
+        $additionalItems = array_filter($validated['additional_items'] ?? [], function($item) {
+            return !empty(trim($item['name'] ?? ''));
         });
 
         $service = Service::create([
@@ -99,6 +110,17 @@ class ServiceController extends Controller
             'preparation_time' => $validated['preparation_time'],
             'cancellation_policy' => $validated['cancellation_policy'],
         ]);
+
+        // Create additional items
+        foreach ($additionalItems as $item) {
+            $service->additionalItems()->create([
+                'name' => $item['name'],
+                'description' => $item['description'] ?? '',
+                'price' => $item['price'],
+                'duration' => $item['duration'] ?? '',
+                'is_active' => $item['is_active'] ?? true,
+            ]);
+        }
 
         return redirect()->route('admin.services.index')->with('success', 'Service created successfully!');
     }
@@ -167,11 +189,22 @@ class ServiceController extends Controller
             'not_included' => 'nullable|string|max:1000',
             'preparation_time' => 'nullable|string|max:100',
             'cancellation_policy' => 'nullable|string|max:1000',
+            'additional_items' => 'array',
+            'additional_items.*.name' => 'required|string|max:255',
+            'additional_items.*.description' => 'nullable|string|max:1000',
+            'additional_items.*.price' => 'required|numeric|min:0',
+            'additional_items.*.duration' => 'nullable|string|max:100',
+            'additional_items.*.is_active' => 'boolean',
         ]);
 
         // Filter out empty features
         $features = array_filter($validated['features'] ?? [], function($feature) {
             return !empty(trim($feature['name'] ?? ''));
+        });
+
+        // Filter out empty additional items
+        $additionalItems = array_filter($validated['additional_items'] ?? [], function($item) {
+            return !empty(trim($item['name'] ?? ''));
         });
 
         $service->update([
@@ -193,6 +226,19 @@ class ServiceController extends Controller
             'preparation_time' => $validated['preparation_time'],
             'cancellation_policy' => $validated['cancellation_policy'],
         ]);
+
+        // Delete existing additional items and create new ones
+        $service->additionalItems()->delete();
+        
+        foreach ($additionalItems as $item) {
+            $service->additionalItems()->create([
+                'name' => $item['name'],
+                'description' => $item['description'] ?? '',
+                'price' => $item['price'],
+                'duration' => $item['duration'] ?? '',
+                'is_active' => $item['is_active'] ?? true,
+            ]);
+        }
 
         return redirect()->route('admin.services.index')->with('success', 'Service updated successfully!');
     }
