@@ -20,6 +20,14 @@ class Service extends Model
         'special_price',
         'offer_end_date',
         'is_active',
+        'category',
+        'tags',
+        'service_area',
+        'requirements',
+        'included',
+        'not_included',
+        'preparation_time',
+        'cancellation_policy',
     ];
 
     protected $casts = [

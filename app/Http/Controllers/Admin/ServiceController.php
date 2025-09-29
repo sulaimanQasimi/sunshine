@@ -63,12 +63,21 @@ class ServiceController extends Controller
             'special_price' => 'nullable|numeric|min:0',
             'offer_end_date' => 'nullable|date|after:today',
             'features' => 'array',
-            'features.*' => 'string|max:255',
+            'features.*.name' => 'required|string|max:255',
+            'features.*.price' => 'required|numeric|min:0',
+            'category' => 'nullable|string|max:100',
+            'tags' => 'nullable|string|max:500',
+            'service_area' => 'nullable|string|max:500',
+            'requirements' => 'nullable|string|max:1000',
+            'included' => 'nullable|string|max:1000',
+            'not_included' => 'nullable|string|max:1000',
+            'preparation_time' => 'nullable|string|max:100',
+            'cancellation_policy' => 'nullable|string|max:1000',
         ]);
 
         // Filter out empty features
         $features = array_filter($validated['features'] ?? [], function($feature) {
-            return !empty(trim($feature));
+            return !empty(trim($feature['name'] ?? ''));
         });
 
         $service = Service::create([
@@ -81,6 +90,14 @@ class ServiceController extends Controller
             'special_price' => $validated['special_price'],
             'offer_end_date' => $validated['offer_end_date'],
             'features' => $features,
+            'category' => $validated['category'],
+            'tags' => $validated['tags'],
+            'service_area' => $validated['service_area'],
+            'requirements' => $validated['requirements'],
+            'included' => $validated['included'],
+            'not_included' => $validated['not_included'],
+            'preparation_time' => $validated['preparation_time'],
+            'cancellation_policy' => $validated['cancellation_policy'],
         ]);
 
         return redirect()->route('admin.services.index')->with('success', 'Service created successfully!');
@@ -140,12 +157,21 @@ class ServiceController extends Controller
             'special_price' => 'nullable|numeric|min:0',
             'offer_end_date' => 'nullable|date',
             'features' => 'array',
-            'features.*' => 'string|max:255',
+            'features.*.name' => 'required|string|max:255',
+            'features.*.price' => 'required|numeric|min:0',
+            'category' => 'nullable|string|max:100',
+            'tags' => 'nullable|string|max:500',
+            'service_area' => 'nullable|string|max:500',
+            'requirements' => 'nullable|string|max:1000',
+            'included' => 'nullable|string|max:1000',
+            'not_included' => 'nullable|string|max:1000',
+            'preparation_time' => 'nullable|string|max:100',
+            'cancellation_policy' => 'nullable|string|max:1000',
         ]);
 
         // Filter out empty features
         $features = array_filter($validated['features'] ?? [], function($feature) {
-            return !empty(trim($feature));
+            return !empty(trim($feature['name'] ?? ''));
         });
 
         $service->update([
@@ -158,6 +184,14 @@ class ServiceController extends Controller
             'special_price' => $validated['special_price'],
             'offer_end_date' => $validated['offer_end_date'],
             'features' => $features,
+            'category' => $validated['category'],
+            'tags' => $validated['tags'],
+            'service_area' => $validated['service_area'],
+            'requirements' => $validated['requirements'],
+            'included' => $validated['included'],
+            'not_included' => $validated['not_included'],
+            'preparation_time' => $validated['preparation_time'],
+            'cancellation_policy' => $validated['cancellation_policy'],
         ]);
 
         return redirect()->route('admin.services.index')->with('success', 'Service updated successfully!');

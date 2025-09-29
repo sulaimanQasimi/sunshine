@@ -23,7 +23,7 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
         is_special_offer: false,
         special_price: '',
         offer_end_date: '',
-        features: [''],
+        features: [{ name: '', price: '' }],
         category: '',
         tags: '',
         service_area: '',
@@ -40,7 +40,7 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
     };
 
     const addFeature = () => {
-        setData('features', [...data.features, '']);
+        setData('features', [...data.features, { name: '', price: '' }]);
     };
 
     const removeFeature = (index: number) => {
@@ -48,9 +48,9 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
         setData('features', newFeatures);
     };
 
-    const updateFeature = (index: number, value: string) => {
+    const updateFeature = (index: number, field: 'name' | 'price', value: string) => {
         const newFeatures = [...data.features];
-        newFeatures[index] = value;
+        newFeatures[index] = { ...newFeatures[index], [field]: value };
         setData('features', newFeatures);
     };
 
@@ -234,25 +234,46 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
                                 Features
                             </h3>
-                            <div className="space-y-3">
+                            <div className="space-y-4">
                                 {data.features.map((feature, index) => (
-                                    <div key={index} className="flex items-center space-x-3">
-                                        <input
-                                            type="text"
-                                            value={feature}
-                                            onChange={(e) => updateFeature(index, e.target.value)}
-                                            placeholder="Enter a feature"
-                                            className="flex-1 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
-                                        />
-                                        {data.features.length > 1 && (
-                                            <button
-                                                type="button"
-                                                onClick={() => removeFeature(index)}
-                                                className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
-                                            >
-                                                Remove
-                                            </button>
-                                        )}
+                                    <div key={index} className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                        <div className="flex items-center space-x-3 mb-3">
+                                            <div className="flex-1">
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                                    Feature Name
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    value={feature.name}
+                                                    onChange={(e) => updateFeature(index, 'name', e.target.value)}
+                                                    placeholder="Enter feature name"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                                />
+                                            </div>
+                                            <div className="w-32">
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                                    Price ($)
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    step="0.01"
+                                                    min="0"
+                                                    value={feature.price}
+                                                    onChange={(e) => updateFeature(index, 'price', e.target.value)}
+                                                    placeholder="0.00"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                                />
+                                            </div>
+                                            {data.features.length > 1 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => removeFeature(index)}
+                                                    className="mt-6 px-3 py-2 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 border border-red-300 dark:border-red-600 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                                                >
+                                                    Remove
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
                                 ))}
                                 <button
@@ -262,6 +283,148 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                 >
                                     + Add Feature
                                 </button>
+                            </div>
+                        </div>
+
+                        {/* Service Details */}
+                        <div>
+                            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                                Service Details
+                            </h3>
+                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                <div>
+                                    <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Category
+                                    </label>
+                                    <select
+                                        id="category"
+                                        value={data.category}
+                                        onChange={(e) => setData('category', e.target.value)}
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    >
+                                        <option value="">Select a category</option>
+                                        <option value="cleaning">Cleaning</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="repair">Repair</option>
+                                        <option value="installation">Installation</option>
+                                        <option value="consultation">Consultation</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    {errors.category && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.category}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="tags" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Tags
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="tags"
+                                        value={data.tags}
+                                        onChange={(e) => setData('tags', e.target.value)}
+                                        placeholder="e.g., residential, commercial, urgent"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.tags && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.tags}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="service_area" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Service Area
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="service_area"
+                                        value={data.service_area}
+                                        onChange={(e) => setData('service_area', e.target.value)}
+                                        placeholder="e.g., City-wide, 10-mile radius, Specific neighborhoods"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.service_area && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.service_area}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="preparation_time" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Preparation Time
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="preparation_time"
+                                        value={data.preparation_time}
+                                        onChange={(e) => setData('preparation_time', e.target.value)}
+                                        placeholder="e.g., 30 minutes, 1 hour, Same day"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.preparation_time && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.preparation_time}</p>}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Service Information */}
+                        <div>
+                            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                                Service Information
+                            </h3>
+                            <div className="space-y-6">
+                                <div>
+                                    <label htmlFor="requirements" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Customer Requirements
+                                    </label>
+                                    <textarea
+                                        id="requirements"
+                                        rows={3}
+                                        value={data.requirements}
+                                        onChange={(e) => setData('requirements', e.target.value)}
+                                        placeholder="What does the customer need to provide or prepare?"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.requirements && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.requirements}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="included" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        What's Included
+                                    </label>
+                                    <textarea
+                                        id="included"
+                                        rows={3}
+                                        value={data.included}
+                                        onChange={(e) => setData('included', e.target.value)}
+                                        placeholder="What is included in this service?"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.included && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.included}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="not_included" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        What's Not Included
+                                    </label>
+                                    <textarea
+                                        id="not_included"
+                                        rows={3}
+                                        value={data.not_included}
+                                        onChange={(e) => setData('not_included', e.target.value)}
+                                        placeholder="What is not included in this service?"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.not_included && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.not_included}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="cancellation_policy" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Cancellation Policy
+                                    </label>
+                                    <textarea
+                                        id="cancellation_policy"
+                                        rows={3}
+                                        value={data.cancellation_policy}
+                                        onChange={(e) => setData('cancellation_policy', e.target.value)}
+                                        placeholder="What is the cancellation policy for this service?"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.cancellation_policy && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.cancellation_policy}</p>}
+                                </div>
                             </div>
                         </div>
 
