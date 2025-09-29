@@ -12,7 +12,15 @@ interface Service {
     is_special_offer: boolean;
     special_price?: number | string;
     offer_end_date?: string;
-    features: string[];
+    features: Array<{ name: string; price: string }>;
+    category?: string;
+    tags?: string;
+    service_area?: string;
+    requirements?: string;
+    included?: string;
+    not_included?: string;
+    preparation_time?: string;
+    cancellation_policy?: string;
 }
 
 interface AdminServiceEditProps {
@@ -37,7 +45,15 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
         is_special_offer: service.is_special_offer,
         special_price: service.special_price?.toString() || '',
         offer_end_date: service.offer_end_date || '',
-        features: service.features.length > 0 ? service.features : [''],
+        features: service.features.length > 0 ? service.features : [{ name: '', price: '' }],
+        category: service.category || '',
+        tags: service.tags || '',
+        service_area: service.service_area || '',
+        requirements: service.requirements || '',
+        included: service.included || '',
+        not_included: service.not_included || '',
+        preparation_time: service.preparation_time || '',
+        cancellation_policy: service.cancellation_policy || '',
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -46,7 +62,7 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
     };
 
     const addFeature = () => {
-        setData('features', [...data.features, '']);
+        setData('features', [...data.features, { name: '', price: '' }]);
     };
 
     const removeFeature = (index: number) => {
@@ -54,9 +70,9 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
         setData('features', newFeatures);
     };
 
-    const updateFeature = (index: number, value: string) => {
+    const updateFeature = (index: number, field: 'name' | 'price', value: string) => {
         const newFeatures = [...data.features];
-        newFeatures[index] = value;
+        newFeatures[index] = { ...newFeatures[index], [field]: value };
         setData('features', newFeatures);
     };
 
@@ -103,10 +119,10 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
                                         id="name"
                                         value={data.name}
                                         onChange={(e) => setData('name', e.target.value)}
-                                        className="form-input mt-1 block w-full"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+                                    {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
                                 </div>
 
                                 <div>
@@ -119,10 +135,10 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
                                         value={data.duration}
                                         onChange={(e) => setData('duration', e.target.value)}
                                         placeholder="e.g., 2 hours, 1 day"
-                                        className="form-input mt-1 block w-full"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.duration && <p className="mt-1 text-sm text-red-600">{errors.duration}</p>}
+                                    {errors.duration && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.duration}</p>}
                                 </div>
 
                                 <div className="sm:col-span-2">
@@ -134,10 +150,10 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
                                         rows={4}
                                         value={data.description}
                                         onChange={(e) => setData('description', e.target.value)}
-                                        className="form-textarea mt-1 block w-full"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description}</p>}
+                                    {errors.description && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.description}</p>}
                                 </div>
                             </div>
                         </div>
@@ -159,10 +175,10 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
                                         min="0"
                                         value={data.base_price}
                                         onChange={(e) => setData('base_price', e.target.value)}
-                                        className="form-input mt-1 block w-full"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.base_price && <p className="mt-1 text-sm text-red-600">{errors.base_price}</p>}
+                                    {errors.base_price && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.base_price}</p>}
                                 </div>
 
                                 <div className="flex items-center">
@@ -171,7 +187,7 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
                                         id="is_active"
                                         checked={data.is_active}
                                         onChange={(e) => setData('is_active', e.target.checked)}
-                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 rounded"
+                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700"
                                     />
                                     <label htmlFor="is_active" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                                         Active Service
@@ -192,7 +208,7 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
                                         id="is_special_offer"
                                         checked={data.is_special_offer}
                                         onChange={(e) => setData('is_special_offer', e.target.checked)}
-                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 rounded"
+                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700"
                                     />
                                     <label htmlFor="is_special_offer" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                                         Enable Special Offer
@@ -212,9 +228,9 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
                                                 min="0"
                                                 value={data.special_price}
                                                 onChange={(e) => setData('special_price', e.target.value)}
-                                                className="form-input mt-1 block w-full"
+                                                className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             />
-                                            {errors.special_price && <p className="mt-1 text-sm text-red-600">{errors.special_price}</p>}
+                                            {errors.special_price && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.special_price}</p>}
                                         </div>
 
                                         <div>
@@ -226,9 +242,9 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
                                                 id="offer_end_date"
                                                 value={data.offer_end_date}
                                                 onChange={(e) => setData('offer_end_date', e.target.value)}
-                                                className="form-input mt-1 block w-full"
+                                                className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             />
-                                            {errors.offer_end_date && <p className="mt-1 text-sm text-red-600">{errors.offer_end_date}</p>}
+                                            {errors.offer_end_date && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.offer_end_date}</p>}
                                         </div>
                                     </div>
                                 )}
@@ -240,34 +256,191 @@ export default function AdminServiceEdit({ auth, service }: AdminServiceEditProp
                             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
                                 Features
                             </h3>
-                            <div className="space-y-3">
+                            <div className="space-y-4">
                                 {data.features.map((feature, index) => (
-                                    <div key={index} className="flex items-center space-x-3">
-                                        <input
-                                            type="text"
-                                            value={feature}
-                                            onChange={(e) => updateFeature(index, e.target.value)}
-                                            placeholder="Enter a feature"
-                                            className="form-input flex-1"
-                                        />
-                                        {data.features.length > 1 && (
-                                            <button
-                                                type="button"
-                                                onClick={() => removeFeature(index)}
-                                                className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
-                                            >
-                                                Remove
-                                            </button>
-                                        )}
+                                    <div key={index} className="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
+                                        <div className="flex items-center space-x-3 mb-3">
+                                            <div className="flex-1">
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                                    Feature Name
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    value={feature.name}
+                                                    onChange={(e) => updateFeature(index, 'name', e.target.value)}
+                                                    placeholder="Enter feature name"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                                />
+                                            </div>
+                                            <div className="w-32">
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                                    Price ($)
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    step="0.01"
+                                                    min="0"
+                                                    value={feature.price}
+                                                    onChange={(e) => updateFeature(index, 'price', e.target.value)}
+                                                    placeholder="0.00"
+                                                    className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                                />
+                                            </div>
+                                            {data.features.length > 1 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => removeFeature(index)}
+                                                    className="mt-6 px-3 py-2 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 border border-red-300 dark:border-red-600 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                                                >
+                                                    Remove
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
                                 ))}
                                 <button
                                     type="button"
                                     onClick={addFeature}
-                                    className="text-cerulean-600 hover:text-cerulean-800 dark:text-cerulean-400 dark:hover:text-cerulean-300 text-sm"
+                                    className="w-full border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-4 text-center text-gray-500 dark:text-gray-400 hover:border-cerulean-500 hover:text-cerulean-600 dark:hover:text-cerulean-400 transition-colors"
                                 >
                                     + Add Feature
                                 </button>
+                            </div>
+                        </div>
+
+                        {/* Service Details */}
+                        <div>
+                            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                                Service Details
+                            </h3>
+                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                <div>
+                                    <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Category
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="category"
+                                        value={data.category}
+                                        onChange={(e) => setData('category', e.target.value)}
+                                        placeholder="e.g., Cleaning, Maintenance"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.category && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.category}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="preparation_time" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Preparation Time
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="preparation_time"
+                                        value={data.preparation_time}
+                                        onChange={(e) => setData('preparation_time', e.target.value)}
+                                        placeholder="e.g., 30 minutes, 1 hour"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.preparation_time && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.preparation_time}</p>}
+                                </div>
+
+                                <div className="sm:col-span-2">
+                                    <label htmlFor="tags" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Tags
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="tags"
+                                        value={data.tags}
+                                        onChange={(e) => setData('tags', e.target.value)}
+                                        placeholder="e.g., eco-friendly, deep-clean, residential"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.tags && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.tags}</p>}
+                                </div>
+
+                                <div className="sm:col-span-2">
+                                    <label htmlFor="service_area" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Service Area
+                                    </label>
+                                    <textarea
+                                        id="service_area"
+                                        rows={3}
+                                        value={data.service_area}
+                                        onChange={(e) => setData('service_area', e.target.value)}
+                                        placeholder="Describe the areas covered by this service"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.service_area && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.service_area}</p>}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Service Information */}
+                        <div>
+                            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                                Service Information
+                            </h3>
+                            <div className="space-y-6">
+                                <div>
+                                    <label htmlFor="requirements" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Requirements
+                                    </label>
+                                    <textarea
+                                        id="requirements"
+                                        rows={3}
+                                        value={data.requirements}
+                                        onChange={(e) => setData('requirements', e.target.value)}
+                                        placeholder="List any specific requirements or preparations needed"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.requirements && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.requirements}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="included" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        What's Included
+                                    </label>
+                                    <textarea
+                                        id="included"
+                                        rows={3}
+                                        value={data.included}
+                                        onChange={(e) => setData('included', e.target.value)}
+                                        placeholder="List what is included in this service"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.included && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.included}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="not_included" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        What's Not Included
+                                    </label>
+                                    <textarea
+                                        id="not_included"
+                                        rows={3}
+                                        value={data.not_included}
+                                        onChange={(e) => setData('not_included', e.target.value)}
+                                        placeholder="List what is not included in this service"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.not_included && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.not_included}</p>}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="cancellation_policy" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Cancellation Policy
+                                    </label>
+                                    <textarea
+                                        id="cancellation_policy"
+                                        rows={3}
+                                        value={data.cancellation_policy}
+                                        onChange={(e) => setData('cancellation_policy', e.target.value)}
+                                        placeholder="Describe the cancellation policy for this service"
+                                        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
+                                    />
+                                    {errors.cancellation_policy && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.cancellation_policy}</p>}
+                                </div>
                             </div>
                         </div>
 

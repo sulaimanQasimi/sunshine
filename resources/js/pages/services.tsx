@@ -10,11 +10,19 @@ interface Service {
     base_price: number | string;
     duration: string;
     icon: any;
-    features: string[];
+    features: Array<{ name: string; price: string } | string>;
     is_special_offer?: boolean;
     special_price?: number | string;
     offer_end_date?: string;
     additional_items?: AdditionalItem[];
+    category?: string;
+    tags?: string;
+    service_area?: string;
+    requirements?: string;
+    included?: string;
+    not_included?: string;
+    preparation_time?: string;
+    cancellation_policy?: string;
 }
 
 interface AdditionalItem {
@@ -124,7 +132,7 @@ export default function Services({ services }: ServicesProps) {
                     <div className="mx-auto max-w-2xl lg:max-w-none">
                         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
                             {services.map((service) => (
-                                <div key={service.id} className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
+                                <div key={service.id} className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transform hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
                                     {service.is_special_offer && service.offer_end_date && !isOfferExpired(service.offer_end_date) && (
                                         <div className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center shadow-lg z-10">
                                             <Zap className="h-4 w-4 mr-2" />
@@ -132,7 +140,8 @@ export default function Services({ services }: ServicesProps) {
                                         </div>
                                     )}
                                     
-                                    <div className="p-8">
+                                    <div className="p-8 flex flex-col h-full">
+                                        {/* Header Section */}
                                         <div className="flex items-center justify-between mb-6">
                                             <div className="h-14 w-14 bg-gradient-to-r from-cerulean-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
                                                 <CheckCircle className="h-7 w-7 text-white" />
@@ -159,36 +168,93 @@ export default function Services({ services }: ServicesProps) {
                                             </div>
                                         </div>
                                         
-                                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                                            {service.name}
-                                        </h3>
+                                        {/* Title and Tags */}
+                                        <div className="mb-4">
+                                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                                                {service.name}
+                                            </h3>
+                                            
+                                            {/* Category and Tags */}
+                                            <div className="flex flex-wrap items-center gap-2 mb-4">
+                                                {service.category && (
+                                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cerulean-100 dark:bg-cerulean-900/30 text-cerulean-700 dark:text-cerulean-300">
+                                                        {service.category}
+                                                    </span>
+                                                )}
+                                                {service.tags && service.tags.split(',').map((tag, index) => (
+                                                    <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                                                        {tag.trim()}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Description */}
                                         <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">
                                             {service.description}
                                         </p>
                                         
-                                        <ul className="space-y-3 mb-8">
-                                            {service.features.map((feature) => (
-                                                <li key={feature} className="flex items-center text-gray-600 dark:text-gray-300">
-                                                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                                                    <span className="text-base">{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        
-                                        <div className="flex items-center justify-between mb-6">
-                                            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                                                <Clock className="h-4 w-4 mr-2" />
-                                                {service.duration}
+                                        {/* Features - Fixed Height Container */}
+                                        <div className="flex-1 mb-6">
+                                            <div className="h-48 overflow-y-auto">
+                                                <ul className="space-y-3">
+                                                    {service.features.map((feature, index) => {
+                                                        // Handle both old string format and new object format
+                                                        const featureName = typeof feature === 'string' ? feature : feature.name;
+                                                        const featurePrice = typeof feature === 'object' ? feature.price : null;
+                                                        
+                                                        return (
+                                                            <li key={index} className="flex items-center justify-between text-gray-600 dark:text-gray-300">
+                                                                <div className="flex items-center">
+                                                                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                                                                    <span className="text-base">{featureName}</span>
+                                                                </div>
+                                                                {featurePrice && parseFloat(featurePrice) > 0 && (
+                                                                    <span className="text-sm font-semibold text-cerulean-600 dark:text-cerulean-400">
+                                                                        +${parseFloat(featurePrice).toFixed(2)}
+                                                                    </span>
+                                                                )}
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ul>
                                             </div>
-                                            {service.is_special_offer && service.offer_end_date && !isOfferExpired(service.offer_end_date) && (
-                                                <div className="flex items-center text-sm text-red-600 dark:text-red-400">
-                                                    <Calendar className="h-4 w-4 mr-2" />
-                                                    Ends {new Date(service.offer_end_date).toLocaleDateString()}
+                                        </div>
+                                        
+                                        {/* Service Info */}
+                                        <div className="space-y-3 mb-6">
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                                    <Clock className="h-4 w-4 mr-2" />
+                                                    {service.duration}
+                                                </div>
+                                                {service.is_special_offer && service.offer_end_date && !isOfferExpired(service.offer_end_date) && (
+                                                    <div className="flex items-center text-sm text-red-600 dark:text-red-400">
+                                                        <Calendar className="h-4 w-4 mr-2" />
+                                                        Ends {new Date(service.offer_end_date).toLocaleDateString()}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            
+                                            {/* Service Area */}
+                                            {service.service_area && (
+                                                <div className="flex items-start text-sm text-gray-500 dark:text-gray-400">
+                                                    <Shield className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
+                                                    <span className="text-xs">{service.service_area}</span>
+                                                </div>
+                                            )}
+                                            
+                                            {/* Preparation Time */}
+                                            {service.preparation_time && (
+                                                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                                    <Zap className="h-4 w-4 mr-2" />
+                                                    <span className="text-xs">Prep: {service.preparation_time}</span>
                                                 </div>
                                             )}
                                         </div>
                                         
-                                        <div className="space-y-4">
+                                        {/* Action Buttons - Always at bottom */}
+                                        <div className="space-y-4 mt-auto">
                                             <button
                                                 onClick={() => {
                                                     setSelectedService(service);
