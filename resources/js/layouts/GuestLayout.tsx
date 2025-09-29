@@ -276,7 +276,7 @@ export default function GuestLayout({ children, title }: GuestLayoutProps) {
                             <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                                 <li>asem.espanta@gmail.com</li>
                                 <li>‪+49 1575 1450300</li>
-                                <li>Sultanahmet Square<br />Fatih District, Istanbul, Turkey</li>
+                                <li>Istanbul, Turkey</li>
                             </ul>
                         </div>
                     </div>
