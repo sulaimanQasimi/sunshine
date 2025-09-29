@@ -62,7 +62,7 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                                 <span className="text-white font-bold text-sm">S</span>
                             </div>
                             <span className="text-xl font-bold text-gray-900 dark:text-white">
-                                Sunshine
+                                Blue Shine
                             </span>
                         </div>
                         <button
@@ -125,7 +125,7 @@ export default function AuthenticatedLayout({ children, title, user }: Authentic
                                 <span className="text-white font-bold text-sm">S</span>
                             </div>
                             <span className="text-xl font-bold text-gray-900 dark:text-white">
-                                Sunshine
+                                Blue Shine
                             </span>
                         </div>
                     </div>

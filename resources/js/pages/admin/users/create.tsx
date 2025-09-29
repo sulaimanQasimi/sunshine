@@ -71,10 +71,10 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                         id="name"
                                         value={data.name}
                                         onChange={(e) => setData('name', e.target.value)}
-                                        className="form-input mt-1 block w-full"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+                                    {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
                                 </div>
 
                                 <div>
@@ -86,10 +86,10 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                         id="email"
                                         value={data.email}
                                         onChange={(e) => setData('email', e.target.value)}
-                                        className="form-input mt-1 block w-full"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+                                    {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
                                 </div>
                             </div>
                         </div>
@@ -109,10 +109,10 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                         id="password"
                                         value={data.password}
                                         onChange={(e) => setData('password', e.target.value)}
-                                        className="form-input mt-1 block w-full"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password}</p>}
+                                    {errors.password && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.password}</p>}
                                 </div>
 
                                 <div>
@@ -124,10 +124,10 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                         id="password_confirmation"
                                         value={data.password_confirmation}
                                         onChange={(e) => setData('password_confirmation', e.target.value)}
-                                        className="form-input mt-1 block w-full"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.password_confirmation && <p className="mt-1 text-sm text-red-600">{errors.password_confirmation}</p>}
+                                    {errors.password_confirmation && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.password_confirmation}</p>}
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                         User Role *
                                     </label>
                                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                        <label className="relative flex cursor-pointer rounded-lg border border-gray-300 bg-white p-4 shadow-sm focus:outline-none">
+                                        <label className="relative flex cursor-pointer rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-4 shadow-sm focus:outline-none hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
                                             <input
                                                 type="radio"
                                                 name="role"
@@ -154,11 +154,11 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                             />
                                             <span className="flex flex-1">
                                                 <span className="flex flex-col">
-                                                    <span className="block text-sm font-medium text-gray-900 flex items-center">
+                                                    <span className="block text-sm font-medium text-gray-900 dark:text-white flex items-center">
                                                         <User className="h-5 w-5 mr-2 text-cerulean-600" />
                                                         Customer
                                                     </span>
-                                                    <span className="mt-1 flex items-center text-sm text-gray-500">
+                                                    <span className="mt-1 flex items-center text-sm text-gray-500 dark:text-gray-400">
                                                         Regular user who can request services
                                                     </span>
                                                 </span>
@@ -168,7 +168,7 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                             }`} />
                                         </label>
 
-                                        <label className="relative flex cursor-pointer rounded-lg border border-gray-300 bg-white p-4 shadow-sm focus:outline-none">
+                                        <label className="relative flex cursor-pointer rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-4 shadow-sm focus:outline-none hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
                                             <input
                                                 type="radio"
                                                 name="role"
@@ -179,11 +179,11 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                             />
                                             <span className="flex flex-1">
                                                 <span className="flex flex-col">
-                                                    <span className="block text-sm font-medium text-gray-900 flex items-center">
+                                                    <span className="block text-sm font-medium text-gray-900 dark:text-white flex items-center">
                                                         <Shield className="h-5 w-5 mr-2 text-coral_pink-600" />
                                                         Administrator
                                                     </span>
-                                                    <span className="mt-1 flex items-center text-sm text-gray-500">
+                                                    <span className="mt-1 flex items-center text-sm text-gray-500 dark:text-gray-400">
                                                         Full access to manage the system
                                                     </span>
                                                 </span>
@@ -193,7 +193,7 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                             }`} />
                                         </label>
                                     </div>
-                                    {errors.role && <p className="mt-1 text-sm text-red-600">{errors.role}</p>}
+                                    {errors.role && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.role}</p>}
                                 </div>
 
                                 <div className="flex items-center">
@@ -202,7 +202,7 @@ export default function AdminUserCreate({ auth }: AdminUserCreateProps) {
                                         id="send_verification_email"
                                         checked={data.send_verification_email}
                                         onChange={(e) => setData('send_verification_email', e.target.checked)}
-                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 rounded"
+                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700"
                                     />
                                     <label htmlFor="send_verification_email" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                                         Send email verification link

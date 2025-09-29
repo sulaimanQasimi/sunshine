@@ -24,6 +24,14 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
         special_price: '',
         offer_end_date: '',
         features: [''],
+        category: '',
+        tags: '',
+        service_area: '',
+        requirements: '',
+        included: '',
+        not_included: '',
+        preparation_time: '',
+        cancellation_policy: '',
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -89,10 +97,10 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                         id="name"
                                         value={data.name}
                                         onChange={(e) => setData('name', e.target.value)}
-                                        className="form-input mt-1 block w-full"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+                                    {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
                                 </div>
 
                                 <div>
@@ -105,10 +113,10 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                         value={data.duration}
                                         onChange={(e) => setData('duration', e.target.value)}
                                         placeholder="e.g., 2 hours, 1 day"
-                                        className="form-input mt-1 block w-full"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.duration && <p className="mt-1 text-sm text-red-600">{errors.duration}</p>}
+                                    {errors.duration && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.duration}</p>}
                                 </div>
 
                                 <div className="sm:col-span-2">
@@ -120,10 +128,10 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                         rows={4}
                                         value={data.description}
                                         onChange={(e) => setData('description', e.target.value)}
-                                        className="form-textarea mt-1 block w-full"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.description && <p className="mt-1 text-sm text-red-600">{errors.description}</p>}
+                                    {errors.description && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.description}</p>}
                                 </div>
                             </div>
                         </div>
@@ -145,10 +153,10 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                         min="0"
                                         value={data.base_price}
                                         onChange={(e) => setData('base_price', e.target.value)}
-                                        className="form-input mt-1 block w-full"
+                                        className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         required
                                     />
-                                    {errors.base_price && <p className="mt-1 text-sm text-red-600">{errors.base_price}</p>}
+                                    {errors.base_price && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.base_price}</p>}
                                 </div>
 
                                 <div className="flex items-center">
@@ -157,7 +165,7 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                         id="is_active"
                                         checked={data.is_active}
                                         onChange={(e) => setData('is_active', e.target.checked)}
-                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 rounded"
+                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700"
                                     />
                                     <label htmlFor="is_active" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                                         Active Service
@@ -178,7 +186,7 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                         id="is_special_offer"
                                         checked={data.is_special_offer}
                                         onChange={(e) => setData('is_special_offer', e.target.checked)}
-                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 rounded"
+                                        className="h-4 w-4 text-cerulean-600 focus:ring-cerulean-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700"
                                     />
                                     <label htmlFor="is_special_offer" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                                         Enable Special Offer
@@ -198,9 +206,9 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                                 min="0"
                                                 value={data.special_price}
                                                 onChange={(e) => setData('special_price', e.target.value)}
-                                                className="form-input mt-1 block w-full"
+                                                className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             />
-                                            {errors.special_price && <p className="mt-1 text-sm text-red-600">{errors.special_price}</p>}
+                                            {errors.special_price && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.special_price}</p>}
                                         </div>
 
                                         <div>
@@ -212,9 +220,9 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                                 id="offer_end_date"
                                                 value={data.offer_end_date}
                                                 onChange={(e) => setData('offer_end_date', e.target.value)}
-                                                className="form-input mt-1 block w-full"
+                                                className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             />
-                                            {errors.offer_end_date && <p className="mt-1 text-sm text-red-600">{errors.offer_end_date}</p>}
+                                            {errors.offer_end_date && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.offer_end_date}</p>}
                                         </div>
                                     </div>
                                 )}
@@ -234,7 +242,7 @@ export default function AdminServiceCreate({ auth }: AdminServiceCreateProps) {
                                             value={feature}
                                             onChange={(e) => updateFeature(index, e.target.value)}
                                             placeholder="Enter a feature"
-                                            className="form-input flex-1"
+                                            className="flex-1 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         />
                                         {data.features.length > 1 && (
                                             <button

@@ -194,7 +194,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                         rows={4}
                                         value={data.description}
                                         onChange={(e) => setData('description', e.target.value)}
-                                        className="form-textarea"
+                                        className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         placeholder="Please describe your project requirements..."
                                     />
                                     {errors.description && (
@@ -240,7 +240,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="client_name"
                                             value={data.client_name}
                                             onChange={(e) => setData('client_name', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                         />
                                         {errors.client_name && (
@@ -258,7 +258,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="client_email"
                                             value={data.client_email}
                                             onChange={(e) => setData('client_email', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                         />
                                         {errors.client_email && (
@@ -276,7 +276,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="client_phone"
                                             value={data.client_phone}
                                             onChange={(e) => setData('client_phone', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                         />
                                         {errors.client_phone && (
@@ -294,7 +294,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="house_number"
                                             value={data.house_number}
                                             onChange={(e) => setData('house_number', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                         />
                                         {errors.house_number && (
                                             <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.house_number}</p>
@@ -311,7 +311,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="client_address"
                                             value={data.client_address}
                                             onChange={(e) => setData('client_address', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                         />
                                         {errors.client_address && (
@@ -329,7 +329,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="city"
                                             value={data.city}
                                             onChange={(e) => setData('city', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                         />
                                         {errors.city && (
@@ -347,7 +347,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="state"
                                             value={data.state}
                                             onChange={(e) => setData('state', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                         />
                                         {errors.state && (
@@ -365,7 +365,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="postal_code"
                                             value={data.postal_code}
                                             onChange={(e) => setData('postal_code', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                         />
                                         {errors.postal_code && (
@@ -383,7 +383,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="country"
                                             value={data.country}
                                             onChange={(e) => setData('country', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                         />
                                         {errors.country && (
@@ -429,7 +429,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="preferred_date"
                                             value={data.preferred_date}
                                             onChange={(e) => setData('preferred_date', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                             min={new Date().toISOString().split('T')[0]}
                                         />
@@ -448,7 +448,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             name="preferred_time"
                                             value={data.preferred_time}
                                             onChange={(e) => setData('preferred_time', e.target.value)}
-                                            className="form-input"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             required
                                         />
                                         {errors.preferred_time && (
@@ -466,7 +466,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             rows={3}
                                             value={data.special_requirements}
                                             onChange={(e) => setData('special_requirements', e.target.value)}
-                                            className="form-textarea"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             placeholder="Any special requirements or constraints..."
                                         />
                                         {errors.special_requirements && (
@@ -484,7 +484,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                             rows={3}
                                             value={data.additional_notes}
                                             onChange={(e) => setData('additional_notes', e.target.value)}
-                                            className="form-textarea"
+                                            className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm"
                                             placeholder="Any additional information you'd like to share..."
                                         />
                                         {errors.additional_notes && (
@@ -504,7 +504,7 @@ export default function ServiceRequest({ auth, service }: ServiceRequestProps) {
                                     <button
                                         type="submit"
                                         disabled={processing}
-                                        className="px-6 py-2 bg-wheat-500 text-white rounded-md hover:bg-wheat-700 disabled:opacity-50"
+                                        className="px-6 py-2 bg-cerulean-500 text-white rounded-md hover:bg-cerulean-700 disabled:opacity-50"
                                     >
                                         {processing ? 'Submitting...' : 'Submit Request'}
                                     </button>

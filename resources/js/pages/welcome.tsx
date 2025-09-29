@@ -25,7 +25,7 @@ export default function Welcome() {
                         <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
                             Welcome to{' '}
                             <span className="bg-gradient-to-r from-cerulean-600 to-blue-600 bg-clip-text text-transparent">
-                                Sunshine
+                                Blue Shine
                             </span>
                         </h1>
                         

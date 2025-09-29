@@ -22,7 +22,7 @@ export default function Profile({ auth }: ProfileProps) {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
     
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post, patch, put, processing, errors } = useForm({
         name: auth.user.name,
         email: auth.user.email,
         current_password: '',
@@ -32,12 +32,12 @@ export default function Profile({ auth }: ProfileProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/user/profile-information');
+        patch('/settings/profile');
     };
 
     const handlePasswordUpdate = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/user/password');
+        put('/settings/password');
     };
 
     return (
@@ -107,7 +107,7 @@ export default function Profile({ auth }: ProfileProps) {
                                         name="name"
                                         value={data.name}
                                         onChange={(e) => setData('name', e.target.value)}
-                                        className={`mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-cerulean-500 focus:ring-cerulean-500 sm:text-sm ${
+                                        className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm ${
                                             errors.name ? 'border-red-300 dark:border-red-600' : ''
                                         }`}
                                         placeholder="Enter your full name"
@@ -127,7 +127,7 @@ export default function Profile({ auth }: ProfileProps) {
                                         name="email"
                                         value={data.email}
                                         onChange={(e) => setData('email', e.target.value)}
-                                        className={`mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-cerulean-500 focus:ring-cerulean-500 sm:text-sm ${
+                                        className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm ${
                                             errors.email ? 'border-red-300 dark:border-red-600' : ''
                                         }`}
                                         placeholder="Enter your email"
@@ -171,7 +171,7 @@ export default function Profile({ auth }: ProfileProps) {
                                         name="current_password"
                                         value={data.current_password}
                                         onChange={(e) => setData('current_password', e.target.value)}
-                                        className={`mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-cerulean-500 focus:ring-cerulean-500 sm:text-sm ${
+                                        className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm ${
                                             errors.current_password ? 'border-red-300 dark:border-red-600' : ''
                                         }`}
                                         placeholder="Enter current password"
@@ -191,7 +191,7 @@ export default function Profile({ auth }: ProfileProps) {
                                         name="password"
                                         value={data.password}
                                         onChange={(e) => setData('password', e.target.value)}
-                                        className={`mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-cerulean-500 focus:ring-cerulean-500 sm:text-sm ${
+                                        className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm ${
                                             errors.password ? 'border-red-300 dark:border-red-600' : ''
                                         }`}
                                         placeholder="Enter new password"
@@ -211,7 +211,7 @@ export default function Profile({ auth }: ProfileProps) {
                                         name="password_confirmation"
                                         value={data.password_confirmation}
                                         onChange={(e) => setData('password_confirmation', e.target.value)}
-                                        className={`mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-cerulean-500 focus:ring-cerulean-500 sm:text-sm ${
+                                        className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:border-cerulean-500 focus:outline-none focus:ring-1 focus:ring-cerulean-500 sm:text-sm ${
                                             errors.password_confirmation ? 'border-red-300 dark:border-red-600' : ''
                                         }`}
                                         placeholder="Confirm new password"
@@ -225,7 +225,7 @@ export default function Profile({ auth }: ProfileProps) {
                                     <button
                                         type="submit"
                                         disabled={processing}
-                                        className="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-wheat-500 hover:bg-wheat-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wheat-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cerulean-500 hover:bg-cerulean-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cerulean-500 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         <Shield className="h-4 w-4 mr-2" />
                                         {processing ? 'Updating...' : 'Update Password'}

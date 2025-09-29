@@ -25,7 +25,7 @@ export default function Login() {
                                 <span className="text-white font-bold text-lg">S</span>
                             </div>
                             <span className="text-2xl font-bold text-gray-900 dark:text-white">
-                                Sunshine
+                                Blue Shine
                             </span>
                         </Link>
                     </div>
